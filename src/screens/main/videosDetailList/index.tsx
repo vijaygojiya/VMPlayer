@@ -9,12 +9,13 @@ import {
 import colors from '../../../utils/colors';
 import styleConfig from '../../../utils/styleConfig';
 import VideoDetailListItem from '../../../component/custom/videoDetailListItem';
+import {routes} from '../../../router/routes';
 
 const VideosDetailList = () => {
   const [videos, setVideos] = useState<PhotoIdentifier[]>([]);
   const navigation = useNavigation();
-  const routes = useRoute();
-  const {groupName} = routes.params;
+  const myRoutes = useRoute();
+  const {groupName} = myRoutes.params;
   useEffect(() => {
     getVideosData();
   }, []);
@@ -25,7 +26,7 @@ const VideosDetailList = () => {
         first: 100,
         assetType: 'Videos',
         groupName: groupName,
-        include: ['fileSize', 'imageSize', 'filename','playableDuration'],
+        include: ['fileSize', 'imageSize', 'filename', 'playableDuration'],
       });
       console.log('===>', videosData);
       setVideos(videosData.edges);
@@ -34,10 +35,17 @@ const VideosDetailList = () => {
     }
   };
 
+
+
   const renderVideoDetailItem = props => {
     const {item, index} = props;
-    return <VideoDetailListItem {...item} />;
+    const openVideo = () => {
+      navigation.navigate(routes.VideosDetail, {uri: item.node.image.uri});
+    };
+    return <VideoDetailListItem {...item} onVideoItemPress={openVideo} />;
   };
+
+
 
   return (
     <View style={styles.rowContainer}>

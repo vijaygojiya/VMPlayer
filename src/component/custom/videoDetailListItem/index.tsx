@@ -9,9 +9,13 @@ import styleConfig from '../../../utils/styleConfig';
 
 const VideoDetailListItem: React.FC<PhotoIdentifier> = props => {
   const {filename, playableDuration, uri} = props.node.image;
+  const {onVideoItemPress} = props;
+
 
   return (
-    <Pressable onPress={() => {}} style={styles.rowContainer}>
+    <Pressable
+      onPress={onVideoItemPress}
+      style={styles.rowContainer}>
       <Image source={{uri: uri}} style={styles.folderIconStyle} />
       <Text style={styles.titleTextStyle}>
         {filename}
