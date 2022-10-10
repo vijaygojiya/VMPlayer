@@ -4,12 +4,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {routes} from './routes';
 import SplashScreen from '../screens/auth/splash';
 import DashboardScreen from '../screens/main/dashboard';
-
+import VideosDetailList from '../screens/main/videosDetailList';
 
 const Stack = createNativeStackNavigator();
-
-
-
 
 function AppContainer() {
   return (
@@ -19,6 +16,10 @@ function AppContainer() {
         initialRouteName={routes.Splash}>
         <Stack.Screen name={routes.Splash} component={SplashScreen} />
         <Stack.Screen name={routes.Dashboard} component={DashboardScreen} />
+        <Stack.Screen
+          name={routes.VideosDetailList}
+          component={VideosDetailList}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

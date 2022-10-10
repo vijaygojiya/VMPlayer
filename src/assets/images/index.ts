@@ -5,6 +5,7 @@ const AppImages = {
   location: require('../images/ic_location.png'),
   clock: require('../images/ic_clock.png'),
   plus: require('../images/plus.png'),
+  folder: require('../images/folder.png'),
 
   ic_home_outline: require('../images/ic_home_outline.png'),
   ic_home_filled: require('../images/ic_home_filled.png'),
