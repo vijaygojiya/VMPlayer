@@ -1,16 +1,15 @@
-import React, { useEffect } from 'react';
-import { View, Text, useColorScheme, StyleSheet } from 'react-native';
-import { routes } from '../../../router/routes';
+import React, {useEffect} from 'react';
+import {View, Text, useColorScheme, StyleSheet} from 'react-native';
+import {routes} from '../../../router/routes';
 import colors from '../../../utils/colors';
 import styleConfig from '../../../utils/styleConfig';
-
+import GS from '../../../utils/styles';
 
 type SplashScreenProps = {
   navigation: any;
 };
 
-const SplashScreen: React.FC<SplashScreenProps> = ({ navigation }) => {
-
+const SplashScreen: React.FC<SplashScreenProps> = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
   useEffect(() => {
     navigateToDrawerScreens();
@@ -26,8 +25,21 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ navigation }) => {
   };
 
   return (
-    <View style={[styles.container, isDarkMode ? { backgroundColor: colors.black } : { backgroundColor: colors.white }]}>
-      <Text style={[styles.nameStyle, isDarkMode ? { color: colors.white } : { color: colors.black }]} >VM Player</Text>
+    <View
+      style={[
+        styles.container,
+        isDarkMode
+          ? {backgroundColor: colors.black}
+          : {backgroundColor: colors.white},
+      ]}>
+      <Text
+        style={[
+          GS.text_black_regular,
+          styles.nameStyle,
+          isDarkMode ? {color: colors.white} : {color: colors.black},
+        ]}>
+        <Text style={[GS.text_black_bold]}>VM</Text>Player
+      </Text>
     </View>
   );
 };
@@ -40,6 +52,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   nameStyle: {
-    fontSize: styleConfig.countPixelRatio(24)
-  }
+    // fontSize: styleConfig.countPixelRatio(24),
+  },
 });

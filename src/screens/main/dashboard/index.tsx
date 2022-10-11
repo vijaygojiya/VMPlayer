@@ -10,16 +10,16 @@ import {
 import {Album, CameraRoll} from '@react-native-camera-roll/camera-roll';
 import {check, PERMISSIONS, request, RESULTS} from 'react-native-permissions';
 import {showToast} from '../../../utils/tost';
-import VideoFolderListItem from '../../../component/custom/videoFolderListItem';
 import styleConfig from '../../../utils/styleConfig';
 import {routes} from '../../../router/routes';
+import FolderListItem from '../../../component/custom/videoFolderListItem';
 
 type DashboardScreenProps = {
   navigation: any;
 };
 
 const DashboardScreen: React.FC<DashboardScreenProps> = ({navigation}) => {
-  const [videoFolders, setVideoFolders] = useState<Album[]>([]);
+  const [folders, setFolders] = useState<Album[]>([]);
 
   useEffect(() => {
     checkLocationPermission();
@@ -86,22 +86,19 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({navigation}) => {
 
   const getData = async () => {
     try {
-      const videos = await CameraRoll.getPhotos({
-        first: 5,
-        assetType: 'Videos',
-      });
       const data = await CameraRoll.getAlbums({assetType: 'Videos'});
-      setVideoFolders(data);
+      const sortData = data.sort(function (a, b) {
+        return a.title.localeCompare(b.title);
+      });
+      setFolders(sortData);
     } catch (error) {
       console.log('eerr-', error);
     }
   };
 
-  const renderVideoFolderItem = (prop: {item: Album; index: any}) => {
-    const {item, index} = prop;
-    return (
-      <VideoFolderListItem {...item} onItemPress={navigateToVideoDetailList} />
-    );
+  const renderFolderItem = (prop: {item: Album; index: any}) => {
+    const {item} = prop;
+    return <FolderListItem {...item} onItemPress={navigateToVideoDetailList} />;
   };
 
   const navigateToVideoDetailList = (groupName: string) => {
@@ -111,9 +108,13 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({navigation}) => {
   return (
     <View style={styles.mainContainer}>
       <FlatList
-        data={videoFolders}
-        renderItem={renderVideoFolderItem}
+        bounces={false}
+        overScrollMode={'never'}
+        keyExtractor={(_, index) => index.toString()}
+        data={folders}
+        renderItem={renderFolderItem}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.flContainer}
       />
     </View>
   );
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   flContainer: {
-    marginVertical: styleConfig.smartScale(15),
-    marginHorizontal: styleConfig.smartWidthScale(22),
+    marginVertical: styleConfig.smartScale(10),
+    marginHorizontal: styleConfig.smartWidthScale(8),
   },
 });
