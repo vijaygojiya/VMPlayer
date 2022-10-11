@@ -14,11 +14,11 @@ import styleConfig from '../../../utils/styleConfig';
 import {routes} from '../../../router/routes';
 import FolderListItem from '../../../component/custom/videoFolderListItem';
 
-type DashboardScreenProps = {
+type LocalFolderScreenProps = {
   navigation: any;
 };
 
-const DashboardScreen: React.FC<DashboardScreenProps> = ({navigation}) => {
+const LocalFolderScreen: React.FC<LocalFolderScreenProps> = ({navigation}) => {
   const [folders, setFolders] = useState<Album[]>([]);
 
   useEffect(() => {
@@ -120,7 +120,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({navigation}) => {
   );
 };
 
-export default DashboardScreen;
+export default LocalFolderScreen;
 
 const styles = StyleSheet.create({
   mainContainer: {

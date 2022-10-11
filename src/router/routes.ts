@@ -3,4 +3,7 @@ export const routes = Object.freeze({
   Dashboard:'Dashboard',
   VideosDetailList: 'VideosDetailList',
   VideosDetail:'VideosDetail',
+  Local: 'Local',
+  Video: 'Video',
+  Profile: 'Profile',
 });

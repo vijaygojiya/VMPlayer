@@ -10,6 +10,8 @@ const AppImages = {
 
   pause: require('../images/pause.png'),
 
+  folder_outline: require('../images/folder_outline.png'),
+  folder_filled: require('../images/folder_filled.png'),
 
   ic_home_outline: require('../images/ic_home_outline.png'),
   ic_home_filled: require('../images/ic_home_filled.png'),
