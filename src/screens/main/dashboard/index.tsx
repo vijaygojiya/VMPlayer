@@ -26,10 +26,9 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({navigation}) => {
   }, []);
   const checkLocationPermission = () => {
     check(
-      Platform.select({
-        android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
-        ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
-      }),
+      styleConfig.isAndroid
+        ? PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE
+        : PERMISSIONS.IOS.PHOTO_LIBRARY,
     )
       .then(result => {
         console.log('==>', result);
@@ -58,10 +57,9 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({navigation}) => {
 
   const askPermission = () => {
     request(
-      Platform.select({
-        android: PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE,
-        ios: PERMISSIONS.IOS.MEDIA_LIBRARY,
-      }),
+      styleConfig.isAndroid
+        ? PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE
+        : PERMISSIONS.IOS.PHOTO_LIBRARY,
     )
       .then(result => {
         switch (result) {
@@ -107,7 +105,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({navigation}) => {
   };
 
   const navigateToVideoDetailList = (groupName: string) => {
-    navigation.navigate(routes.VideosDetailList,{groupName});
+    navigation.navigate(routes.VideosDetailList, {groupName});
   };
 
   return (
