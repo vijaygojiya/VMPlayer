@@ -1,7 +1,4 @@
-import CameraRoll, {
-  PhotoIdentifier,
-  PhotoIdentifiersPage,
-} from '@react-native-camera-roll/camera-roll';
+import { CameraRoll,PhotoIdentifier,PhotoIdentifiersPage } from "@react-native-camera-roll/camera-roll";
 
 export interface FetchPaginatedResult {
   data: PhotoIdentifier[] | null;
@@ -27,10 +24,10 @@ const paginatePhotos = async (
         first: pageSize,
       });
     }
-    lastPageInfo = photos?.page_info;
+    lastPageInfo = photos.page_info;
     console.log('Last visible cursor', lastPageInfo);
     onEnd && onEnd(true);
-    return photos?.edges;
+    return photos.edges;
   }
 
   if (!lastPageInfo || lastPageInfo.has_next_page) {

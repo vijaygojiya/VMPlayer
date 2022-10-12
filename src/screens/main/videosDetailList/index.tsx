@@ -1,5 +1,5 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {Text, View, Image, FlatList, StyleSheet} from 'react-native';
 import {
   Album,
@@ -12,6 +12,7 @@ import VideoDetailListItem from '../../../component/custom/videoDetailListItem';
 import {routes} from '../../../router/routes';
 import AppImages from '../../../assets/images';
 import CommonToolbar from '../../../component/custom/commontoolbar';
+import BottomSheet, {BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 
 const VideosDetailList = () => {
   const [videos, setVideos] = useState<PhotoIdentifier[]>([]);
@@ -22,13 +23,41 @@ const VideosDetailList = () => {
     getVideosData();
   }, []);
 
+  // ref
+  const bottomSheetRef = useRef<BottomSheet>(null);
+
+  // variables
+  const snapPoints = useMemo(() => ['50%'], []);
+
+  const openBottomShhet = () => {
+    // bottomSheetRef?.current?.expand();\
+    bottomSheetRef?.current?.snapToIndex(0);
+  };
+
+  const renderBackdrop = useCallback(
+    props => (
+      <BottomSheetBackdrop
+        {...props}
+        disappearsOnIndex={-1}
+        appearsOnIndex={0}
+      />
+    ),
+    [],
+  );
+
   const getVideosData = async () => {
     try {
       const videosData = await CameraRoll.getPhotos({
-        first: 100,
+        first: 10,
         assetType: 'Videos',
         groupName: groupName,
-        include: ['fileSize', 'imageSize', 'filename', 'playableDuration'],
+        include: [
+          'filename',
+          'fileSize',
+          'location',
+          'imageSize',
+          'playableDuration',
+        ],
       });
       console.log('===>', videosData);
       setVideos(videosData.edges);
@@ -54,6 +83,7 @@ const VideosDetailList = () => {
         isLeftButton={true}
         leftIcon={AppImages.back}
         onLeftClickListener={goBack}
+        onRightClickListener={openBottomShhet}
         rightIcon={AppImages.ic_more}
         title={groupName}
         textStyle={styles.headerTitleStyle}
@@ -69,6 +99,16 @@ const VideosDetailList = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.flContainer}
       />
+      <BottomSheet
+        backdropComponent={renderBackdrop}
+        enablePanDownToClose={true}
+        ref={bottomSheetRef}
+        index={-1}
+        snapPoints={snapPoints}>
+        <View style={{flex: 1}}>
+          <Text>hellow world!@</Text>
+        </View>
+      </BottomSheet>
     </View>
   );
 };
