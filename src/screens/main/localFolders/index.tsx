@@ -13,12 +13,14 @@ import {showToast} from '../../../utils/tost';
 import styleConfig from '../../../utils/styleConfig';
 import {routes} from '../../../router/routes';
 import FolderListItem from '../../../component/custom/videoFolderListItem';
+import CommonToolbar from '../../../component/custom/commontoolbar';
+import AppImages from '../../../assets/images';
 
-type DashboardScreenProps = {
+type LocalFolderScreenProps = {
   navigation: any;
 };
 
-const DashboardScreen: React.FC<DashboardScreenProps> = ({navigation}) => {
+const LocalFolderScreen: React.FC<LocalFolderScreenProps> = ({navigation}) => {
   const [folders, setFolders] = useState<Album[]>([]);
 
   useEffect(() => {
@@ -107,6 +109,15 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({navigation}) => {
 
   return (
     <View style={styles.mainContainer}>
+      <CommonToolbar
+        isRightButton={true}
+        isLeftButton={true}
+        leftIcon={AppImages.burger}
+        rightIcon={AppImages.ic_search_outline}
+        title="Folders"
+        rightIconStyle={{}}
+        leftIconStyle={{}}
+      />
       <FlatList
         bounces={false}
         overScrollMode={'never'}
@@ -120,14 +131,13 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({navigation}) => {
   );
 };
 
-export default DashboardScreen;
+export default LocalFolderScreen;
 
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
   },
   flContainer: {
-    marginVertical: styleConfig.smartScale(10),
     marginHorizontal: styleConfig.smartWidthScale(8),
   },
 });

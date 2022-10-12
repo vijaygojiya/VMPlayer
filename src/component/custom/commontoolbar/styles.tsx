@@ -1,33 +1,39 @@
-import { StyleSheet } from "react-native";
-import colors from "../../../utils/colors";
-import styleConfig from "../../../utils/styleConfig";
-
-
+import {StyleSheet} from 'react-native';
+import colors from '../../../utils/colors';
+import styleConfig from '../../../utils/styleConfig';
+import GS from '../../../utils/styles';
 
 const styles = StyleSheet.create({
+  
   saContainer: {
-    // backgroundColor: '',
     paddingVertical: styleConfig.smartScale(10),
-    marginBottom: styleConfig.smartScale(10),
+    backgroundColor: colors.darkGreyBlue,
+    paddingBottom: styleConfig.smartScale(15),
+    ...GS.shadowEffect,
   },
   vToolbarContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    // backgroundColor:'green',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   pIconContainer: {
-    marginHorizontal: styleConfig.smartWidthScale(8),
-    justifyContent: "center",
+    marginHorizontal: styleConfig.smartWidthScale(18),
+    justifyContent: 'center',
   },
   iBack: {
     width: styleConfig.countPixelRatio(25),
     height: styleConfig.countPixelRatio(25),
-    resizeMode: "contain",
+    resizeMode: 'contain',
   },
   tTitle: {
     flex: 1,
     fontSize: styleConfig.countPixelRatio(22),
-    textAlign:'left',
+    textAlign: 'left',
+  },
+  iconStyle: {
+    width: styleConfig.countPixelRatio(25),
+    height: styleConfig.countPixelRatio(25),
+    resizeMode: 'contain',
+    tintColor: colors.white,
   },
 });
 

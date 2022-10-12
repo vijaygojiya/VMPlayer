@@ -9,16 +9,14 @@
  */
 
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {StatusBar, StyleSheet, Text, View} from 'react-native';
 import AppContainer from './src/router';
+import colors from './src/utils/colors';
 
 const App = () => {
   return (
-    <View style={styles.mainContainer} >
+    <View style={styles.mainContainer}>
+      <StatusBar backgroundColor={colors.darkGreyBlue} />
       <AppContainer />
     </View>
   );
@@ -26,7 +24,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1
+    flex: 1,
   },
 });
 

@@ -10,6 +10,8 @@ import colors from '../../../utils/colors';
 import styleConfig from '../../../utils/styleConfig';
 import VideoDetailListItem from '../../../component/custom/videoDetailListItem';
 import {routes} from '../../../router/routes';
+import AppImages from '../../../assets/images';
+import CommonToolbar from '../../../component/custom/commontoolbar';
 
 const VideosDetailList = () => {
   const [videos, setVideos] = useState<PhotoIdentifier[]>([]);
@@ -35,8 +37,6 @@ const VideosDetailList = () => {
     }
   };
 
-
-
   const renderVideoDetailItem = props => {
     const {item, index} = props;
     const openVideo = () => {
@@ -44,12 +44,31 @@ const VideosDetailList = () => {
     };
     return <VideoDetailListItem {...item} onVideoItemPress={openVideo} />;
   };
-
-
-
+  const goBack = () => {
+    navigation.goBack();
+  };
   return (
-    <View style={styles.rowContainer}>
-      <FlatList data={videos} renderItem={renderVideoDetailItem} />
+    <View style={styles.container}>
+      <CommonToolbar
+        isRightButton={true}
+        isLeftButton={true}
+        leftIcon={AppImages.back}
+        onLeftClickListener={goBack}
+        rightIcon={AppImages.ic_more}
+        title={groupName}
+        textStyle={styles.headerTitleStyle}
+        rightIconStyle={{transform: [{rotate: '90deg'}]}}
+        leftIconStyle={{}}
+      />
+      <FlatList
+        data={videos}
+        renderItem={renderVideoDetailItem}
+        bounces={false}
+        overScrollMode={'never'}
+        keyExtractor={(_, index) => index.toString()}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.flContainer}
+      />
     </View>
   );
 };
@@ -57,23 +76,13 @@ const VideosDetailList = () => {
 export default VideosDetailList;
 
 const styles = StyleSheet.create({
-  folderIconStyle: {
-    height: styleConfig.countPixelRatio(30),
-    width: styleConfig.countPixelRatio(30),
-    marginEnd: styleConfig.smartWidthScale(10),
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    marginVertical: styleConfig.smartScale(10),
-    marginHorizontal: styleConfig.smartWidthScale(10),
-    alignItems: 'center',
-  },
-  countTextStyle: {
-    color: colors.lightText,
-  },
-  titleTextStyle: {
+  container: {
     flex: 1,
-    color: colors.mainText,
-    marginEnd: styleConfig.smartWidthScale(10),
+  },
+  flContainer: {
+    marginHorizontal: styleConfig.smartWidthScale(8),
+  },
+  headerTitleStyle: {
+    fontSize: styleConfig.countPixelRatio(16),
   },
 });

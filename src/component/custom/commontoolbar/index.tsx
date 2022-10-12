@@ -47,22 +47,21 @@ const CommonToolbar: React.FC<{
       forceInset={{top: 'always', bottom: 'never'}}
       style={styles.saContainer}>
         <View style={[styles.vToolbarContainer, containerStyle ]} >
-      <Text style={[CS.text_black_bold, styles.tTitle, textStyle]}>
-        {title}
-      </Text>
       <Pressable
         style={styles.pIconContainer}
         onPress={isLeftButton ? onLeftClickListener : null}>
         {isLeftButton ? (
-          <Image source={leftIcon} style={leftIconStyle} />
+          <Image source={leftIcon} style={[ styles.iconStyle ,leftIconStyle && leftIconStyle]} />
         ) : null}
       </Pressable>
-
+      <Text numberOfLines={1} style={[CS.text_white_medium, styles.tTitle, textStyle]}>
+        {title}
+      </Text>
       <Pressable
         style={styles.pIconContainer}
         onPress={isRightButton ? onRightClickListener : null}>
         {isRightButton ? (
-          <Image source={rightIcon} style={rightIconStyle} />
+          <Image source={rightIcon} style={[styles.iconStyle,rightIconStyle && rightIconStyle]} />
         ) : null}
       </Pressable>
       </View>

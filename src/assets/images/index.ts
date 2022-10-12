@@ -10,6 +10,8 @@ const AppImages = {
 
   pause: require('../images/pause.png'),
 
+  folder_outline: require('../images/folder_outline.png'),
+  folder_filled: require('../images/folder_filled.png'),
 
   ic_home_outline: require('../images/ic_home_outline.png'),
   ic_home_filled: require('../images/ic_home_filled.png'),
@@ -31,6 +33,8 @@ const AppImages = {
 
   ic_bookmark_filled: require('../images/ic_bookmark_filled.png'),
   ic_bookmark_outline: require('../images/ic_bookmark_outline.png'),
+  burger: require('../images/burger.png'),
+  ic_more: require('../images/ic_more.png'),
 };
 
 export default AppImages;
