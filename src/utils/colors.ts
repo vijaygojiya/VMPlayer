@@ -1,16 +1,12 @@
 const colors = {
   white: '#ffffff',
   black: '#000000',
-  PrimaryPurple:'#DB00FF',
-  SecondaryYellow: '#FFCB45',
-  SecondaryOrange: '#FF7644',
-  SecondaryBlue: '#0093ff ',
-  AccentRed: '#FF4179',
-
-  MenuActive: '#FF7644',
-  MenuInactive: '#d9d9d9',
-  mainText: '#393938',
-  lightText:'#666666'
+  purple: '#DB00FF',
+  yellow: '#FFCB45',
+  orange: '#FF8A00',
+  grey: '#A8A8A8',
+  lightGreyBlue: '#535572',
+  darkGreyBlue: '#31374A',
 };
 
 export default colors;

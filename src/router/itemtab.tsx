@@ -1,7 +1,8 @@
 import React from 'react';
-import {Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import colors from '../utils/colors';
 import styleConfig from '../utils/styleConfig';
+import GS from '../utils/styles';
 
 const ItemTab: React.FC<{
   item: any;
@@ -18,9 +19,19 @@ const ItemTab: React.FC<{
         onTabClickListener(index);
       }}>
       <Image
-        style={[ isSelected ?styles.iIcon : styles.iIconnActive]}
+        style={[isSelected ? styles.iIcon : styles.iIconnActive]}
         source={isSelected ? item.ActiveIcon : item.InActiveIcon}
       />
+      <Text
+        style={[
+          GS.text_black_medium,
+          {marginVertical: styleConfig.smartScale(5)},
+          isSelected
+            ? {color: colors.darkGreyBlue}
+            : {color: colors.darkGreyBlue},
+        ]}>
+        {item.Name}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -33,16 +44,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   iIcon: {
-    width: styleConfig.countPixelRatio(30),
-    height: styleConfig.countPixelRatio(30),
-    tintColor: colors.MenuActive,
+    width: styleConfig.countPixelRatio(25),
+    height: styleConfig.countPixelRatio(25),
+    tintColor: colors.darkGreyBlue,
     resizeMode: 'contain',
   },
-  iIconnActive:{
-    width: styleConfig.countPixelRatio(30),
-    height: styleConfig.countPixelRatio(30),
-    tintColor: colors.MenuInactive,
+  iIconnActive: {
+    width: styleConfig.countPixelRatio(25),
+    height: styleConfig.countPixelRatio(25),
+    tintColor: colors.lightGreyBlue,
     resizeMode: 'contain',
-  }
+  },
 });
 export default ItemTab;

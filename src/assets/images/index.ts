@@ -33,6 +33,8 @@ const AppImages = {
 
   ic_bookmark_filled: require('../images/ic_bookmark_filled.png'),
   ic_bookmark_outline: require('../images/ic_bookmark_outline.png'),
+  burger: require('../images/burger.png'),
+  ic_more: require('../images/ic_more.png'),
 };
 
 export default AppImages;

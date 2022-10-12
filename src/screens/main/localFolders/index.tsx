@@ -13,6 +13,8 @@ import {showToast} from '../../../utils/tost';
 import styleConfig from '../../../utils/styleConfig';
 import {routes} from '../../../router/routes';
 import FolderListItem from '../../../component/custom/videoFolderListItem';
+import CommonToolbar from '../../../component/custom/commontoolbar';
+import AppImages from '../../../assets/images';
 
 type LocalFolderScreenProps = {
   navigation: any;
@@ -107,6 +109,15 @@ const LocalFolderScreen: React.FC<LocalFolderScreenProps> = ({navigation}) => {
 
   return (
     <View style={styles.mainContainer}>
+      <CommonToolbar
+        isRightButton={true}
+        isLeftButton={true}
+        leftIcon={AppImages.burger}
+        rightIcon={AppImages.ic_search_outline}
+        title="Folders"
+        rightIconStyle={{}}
+        leftIconStyle={{}}
+      />
       <FlatList
         bounces={false}
         overScrollMode={'never'}
@@ -127,7 +138,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   flContainer: {
-    marginVertical: styleConfig.smartScale(10),
     marginHorizontal: styleConfig.smartWidthScale(8),
   },
 });

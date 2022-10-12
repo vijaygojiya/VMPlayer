@@ -7,6 +7,7 @@ import colors from '../utils/colors';
 import {Type_Of_TabBar} from '../utils/enum';
 import string from '../utils/string';
 import styleConfig from '../utils/styleConfig';
+import GS from '../utils/styles';
 import ItemTab from './itemtab';
 import {routes} from './routes';
 
@@ -92,7 +93,8 @@ const styles = StyleSheet.create({
   saContainer: {
     backgroundColor: colors.white,
     borderRadius: styleConfig.countPixelRatio(15),
-    // elevation:200,
+    shadowColor: colors.darkGreyBlue,
+    ...GS.shadowEffect,
   },
   flTabContainer: {
     justifyContent: 'space-around',

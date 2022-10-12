@@ -17,7 +17,7 @@ const FolderListItem: React.FC<{
 
   return (
     <Pressable
-      android_ripple={{color: colors.Primary}}
+      android_ripple={{color: colors.grey}}
       onPress={() => {
         onItemPress(title);
       }}
@@ -59,10 +59,10 @@ const styles = StyleSheet.create({
   },
   titleTextStyle: {
     fontSize: styleConfig.countPixelRatio(16),
-    color: colors.mainText,
+    color: colors.lightGreyBlue,
   },
   countTextStyle: {
-    color: colors.lightText,
+    color: colors.lightGreyBlue,
     fontSize: styleConfig.countPixelRatio(13),
     opacity: 0.5,
   },

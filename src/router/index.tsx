@@ -9,7 +9,7 @@ import CustomTabBar from './customtabbar';
 import LocalFolderScreen from '../screens/main/localFolders';
 import ProfileScreen from '../screens/main/profile';
 import VideosScreen from '../screens/main/video';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const Stack = createNativeStackNavigator();
 
