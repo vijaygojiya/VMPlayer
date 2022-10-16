@@ -1,10 +1,8 @@
-import {Album, PhotoIdentifier} from '@react-native-camera-roll/camera-roll';
-import moment from 'moment';
-import PropTypes from 'prop-types';
+import { PhotoIdentifier } from '@react-native-camera-roll/camera-roll';
 import React from 'react';
 import {Text, Pressable, Image, StyleSheet, View} from 'react-native';
-import AppImages from '../../../assets/images';
 import colors from '../../../utils/colors';
+import Method from '../../../utils/method';
 import styleConfig from '../../../utils/styleConfig';
 import GS from '../../../utils/styles';
 
@@ -17,7 +15,11 @@ const VideoDetailListItem: React.FC<PhotoIdentifier> = props => {
       android_ripple={{color: colors.grey}}
       onPress={onVideoItemPress}
       style={styles.rowContainer}>
-      <Image resizeMode='cover' source={{uri: uri}} style={styles.folderIconStyle} />
+      <Image
+        resizeMode="cover"
+        source={{uri: uri}}
+        style={styles.folderIconStyle}
+      />
       <View style={styles.titleContainer}>
         <Text
           numberOfLines={2}
@@ -26,7 +28,7 @@ const VideoDetailListItem: React.FC<PhotoIdentifier> = props => {
           {filename}
         </Text>
         <Text numberOfLines={1} style={styles.countTextStyle}>
-          {moment.utc(playableDuration * 1000).format('mm:ss')}
+          {Method.getDurationTime(playableDuration)}
         </Text>
       </View>
     </Pressable>
@@ -38,9 +40,9 @@ export default VideoDetailListItem;
 const styles = StyleSheet.create({
   folderIconStyle: {
     height: styleConfig.countPixelRatio(65),
-    width: 16/8 * styleConfig.countPixelRatio(50),
+    width: (16 / 8) * styleConfig.countPixelRatio(50),
     marginEnd: styleConfig.smartWidthScale(10),
-    borderRadius: styleConfig.countPixelRatio(10)
+    borderRadius: styleConfig.countPixelRatio(10),
   },
   rowContainer: {
     flexDirection: 'row',

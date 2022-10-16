@@ -103,8 +103,8 @@ const LocalFolderScreen: React.FC<LocalFolderScreenProps> = ({navigation}) => {
     return <FolderListItem {...item} onItemPress={navigateToVideoDetailList} />;
   };
 
-  const navigateToVideoDetailList = (groupName: string) => {
-    navigation.navigate(routes.VideosDetailList, {groupName});
+  const navigateToVideoDetailList = (groupName: string,count: string) => {
+    navigation.navigate(routes.VideosDetailList, {groupName,count});
   };
 
   return (

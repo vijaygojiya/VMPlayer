@@ -16,9 +16,11 @@ import BottomSheet, {BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 
 const VideosDetailList = () => {
   const [videos, setVideos] = useState<PhotoIdentifier[]>([]);
+  // const [lastVideo, setLastVideo] = useState<string>();
+  // const [hashNextPage, setHashNextPage] = useState<boolean>();
   const navigation = useNavigation();
   const myRoutes = useRoute();
-  const {groupName} = myRoutes.params;
+  const {groupName, count} = myRoutes.params;
   useEffect(() => {
     getVideosData();
   }, []);
@@ -48,7 +50,7 @@ const VideosDetailList = () => {
   const getVideosData = async () => {
     try {
       const videosData = await CameraRoll.getPhotos({
-        first: 10,
+        first: count,
         assetType: 'Videos',
         groupName: groupName,
         include: [
@@ -59,6 +61,8 @@ const VideosDetailList = () => {
           'playableDuration',
         ],
       });
+      // setHashNextPage(videosData.page_info.has_next_page);
+      // setLastVideo(videosData.page_info.end_cursor);
       console.log('===>', videosData);
       setVideos(videosData.edges);
     } catch (error) {
@@ -66,10 +70,36 @@ const VideosDetailList = () => {
     }
   };
 
+  // const fetchMoreVideo = async () => {
+  //   if (hashNextPage) {
+  //     try {
+  //       const videosData = await CameraRoll.getPhotos({
+  //         first: 10,
+  //         after: lastVideo,
+  //         assetType: 'Videos',
+  //         groupName: groupName,
+  //         include: [
+  //           'filename',
+  //           'fileSize',
+  //           'location',
+  //           'imageSize',
+  //           'playableDuration',
+  //         ],
+  //       });
+  //       setHashNextPage(videosData.page_info.has_next_page);
+  //       setLastVideo(videosData.page_info.end_cursor);
+  //       console.log('===>', videosData);
+  //       setVideos(oldVideo => [...oldVideo, ...videosData.edges]);
+  //     } catch (error) {
+  //       console.log('err0', error);
+  //     }
+  //   }
+  // };
+
   const renderVideoDetailItem = props => {
     const {item, index} = props;
     const openVideo = () => {
-      navigation.navigate(routes.VideosDetail, {uri: item.node.image.uri});
+      navigation.navigate(routes.VideosDetail, {videos,index});
     };
     return <VideoDetailListItem {...item} onVideoItemPress={openVideo} />;
   };
@@ -98,6 +128,7 @@ const VideosDetailList = () => {
         keyExtractor={(_, index) => index.toString()}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.flContainer}
+        // onEndReached={fetchMoreVideo}
       />
       <BottomSheet
         backdropComponent={renderBackdrop}

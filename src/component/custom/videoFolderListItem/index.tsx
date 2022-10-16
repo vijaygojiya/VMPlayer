@@ -19,7 +19,7 @@ const FolderListItem: React.FC<{
     <Pressable
       android_ripple={{color: colors.grey}}
       onPress={() => {
-        onItemPress(title);
+        onItemPress(title,count);
       }}
       style={styles.rowContainer}>
       <Image source={AppImages.folder} style={styles.folderIconStyle} />
