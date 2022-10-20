@@ -1,5 +1,3 @@
-import {Album} from '@react-native-camera-roll/camera-roll';
-import PropTypes from 'prop-types';
 import React from 'react';
 import {View} from 'react-native';
 import {Text, Pressable, Image, StyleSheet} from 'react-native';
@@ -19,15 +17,15 @@ const FolderListItem: React.FC<{
     <Pressable
       android_ripple={{color: colors.grey}}
       onPress={() => {
-        onItemPress(title,count);
+        onItemPress(title, count);
       }}
       style={styles.rowContainer}>
-      <Image source={AppImages.folder} style={styles.folderIconStyle} />
+      <Image source={AppImages.folder_filled} style={styles.folderIconStyle} />
       <View style={styles.titleContainer}>
         <Text
           numberOfLines={2}
           ellipsizeMode={'tail'}
-          style={[GS.text_black_medium,styles.titleTextStyle]}>
+          style={[GS.text_black_medium, styles.titleTextStyle]}>
           {title}
         </Text>
         <Text numberOfLines={1} style={styles.countTextStyle}>
@@ -45,6 +43,7 @@ const styles = StyleSheet.create({
     height: styleConfig.countPixelRatio(55),
     width: styleConfig.countPixelRatio(55),
     marginEnd: styleConfig.smartWidthScale(10),
+    tintColor: colors.blue,
   },
   rowContainer: {
     flexDirection: 'row',

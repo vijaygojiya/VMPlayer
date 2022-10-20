@@ -1,17 +1,9 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
-import React, {useState, useRef, LegacyRef, useEffect} from 'react';
-import {
-  View,
-  StyleSheet,
-  Pressable,
-  Image,
-  Text,
-  GestureResponderEvent,
-} from 'react-native';
+import React, {useState, useRef, useEffect} from 'react';
+import {View, StyleSheet, Pressable, Text} from 'react-native';
 
 import Video, {OnProgressData} from 'react-native-video';
 import AppImages from '../../../assets/images';
-import {routes} from '../../../router/routes';
 import colors from '../../../utils/colors';
 import styleConfig from '../../../utils/styleConfig';
 import {showToast} from '../../../utils/tost';
@@ -20,7 +12,11 @@ import GS from '../../../utils/styles';
 import Animated, {FadeIn, FadeOut} from 'react-native-reanimated';
 import Slider from '@react-native-community/slider';
 import PressableIcon from '../../../component/custom/pressableIcon';
-import {PanGestureHandler} from 'react-native-gesture-handler';
+// import {
+//   Gesture,
+//   GestureDetector,
+//   PanGestureHandler,
+// } from 'react-native-gesture-handler';
 
 const VideosDetailScreen = () => {
   const navigation = useNavigation();
@@ -30,7 +26,7 @@ const VideosDetailScreen = () => {
   const [isVideoPaused, setIsVideoPaused] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [isVideoControlVisible, setIsVideoControlVisible] = useState(true);
-  const [volume, setVolume] = useState(1);
+  // const [volume, setVolume] = useState(1);
   const [controlsTimeout, setControlsTimeout] = useState<NodeJS.Timeout | null>(
     null,
   );
@@ -42,6 +38,27 @@ const VideosDetailScreen = () => {
   const videoRef = useRef<Video>();
   const {playableDuration, uri, filename} =
     videos[currentVideoIndex].node.image;
+  // const context = useSharedValue({y: 0});
+  // const gesture = Gesture.Pan()
+  //   .onStart(e => {
+  //     context.value = {y: e.translationY};
+  //     console.log('===eeee', e);
+  //   })
+  //   .onUpdate(event => {
+  //     if (context.value.y <= event.translationY) {
+  //       console.log('descrinng...');
+  //       if (volume > 0) {
+  //         setVolume(v => v - 0.05);
+  //       }
+  //     } else {
+  //       if (volume < 1) {
+  //         setVolume(v => v + 0.05);
+  //       }
+  //     }
+  //   })
+  //   .onEnd(() => {
+  //     hideVideoControls();
+  //   });
 
   const videoPlayPause = () => {
     showVideoContros();
@@ -74,7 +91,7 @@ const VideosDetailScreen = () => {
   const exitVideo = () => {
     navigation.goBack();
   };
-  const openBottomShhet = () => {};
+  // const openBottomShhet = () => {};
 
   const showVideoContros = () => {
     setIsVideoControlVisible(true);
@@ -92,30 +109,22 @@ const VideosDetailScreen = () => {
     setControlsTimeout(timeout);
   };
 
-  const dragging = () => {
-    setIsVideoPaused(true);
-  };
+  // const dragging = () => {
+  //   setIsVideoPaused(true);
+  // };
 
   const seekVideo = value => {
-    setIsVideoPaused(false);
+    // setIsVideoPaused(false);
     videoRef.current?.seek(value);
-  };
-
-  const handleClickEvent = (positionX: number) => {
-    if (isVideoControlVisible) {
-      setIsVideoControlVisible(false);
-    }
-    if (positionX > styleConfig.width / 2) {
-      console.log('right', positionX);
-    } else {
-      console.log('left', positionX);
-    }
   };
 
   const renderVideoControls = () => {
     if (isVideoControlVisible) {
       return (
-        <Animated.View style={{flex: 1}} entering={FadeIn} exiting={FadeOut}>
+        <Animated.View
+          style={styles.controlContainer}
+          entering={FadeIn}
+          exiting={FadeOut}>
           <View style={styles.videoHeaderContainer}>
             <PressableIcon
               onIconClick={exitVideo}
@@ -133,22 +142,12 @@ const VideosDetailScreen = () => {
               iconSource={AppImages.ic_more}
             />
           </View>
-          <View
-            onTouchMove={(e: GestureResponderEvent) => {
-              if(e.nativeEvent.pageY > styleConfig.width){
-
-              }
-            }}
-            onTouchStart={(e: GestureResponderEvent) => {
-              console.log('=start===>', e);
-            }}
-            onTouchEnd={(e: GestureResponderEvent) => {
-              console.log('=end===>', e);
-
-              handleClickEvent(e.nativeEvent.pageX);
-            }}
-            style={{flex: 1}}
+          {/* <GestureDetector gesture={gesture}> */}
+          <Pressable
+            onPress={hideVideoControls}
+            style={styles.spaceContainer}
           />
+          {/* </GestureDetector> */}
           <View style={styles.videoControlContainer}>
             <PressableIcon
               onIconClick={previousVideo}
@@ -167,16 +166,16 @@ const VideosDetailScreen = () => {
             {Method.getDurationTime(currentTime)} /{' '}
             {Method.getDurationTime(playableDuration)}
           </Text>
-          {/* <Slider
+          <Slider
             style={[styles.progressSlider]}
-            onValueChange={dragging}
+            // onValueChange={dragging}
             onSlidingComplete={seekVideo}
             maximumValue={Math.floor(playableDuration)}
             value={Math.floor(currentTime)}
             trackStyle={[styles.track]}
             thumbStyle={[styles.thumb, {borderColor: colors.darkGreyBlue}]}
             minimumTrackTintColor={colors.darkGreyBlue}
-          /> */}
+          />
         </Animated.View>
       );
     }
@@ -185,7 +184,7 @@ const VideosDetailScreen = () => {
   return (
     <View style={styles.container}>
       <Video
-        volume={volume}
+        // volume={volume}
         onEnd={nextVideo}
         onProgress={onVideoProgress}
         needsOffscreenAlphaCompositing={true}
@@ -216,6 +215,8 @@ const styles = StyleSheet.create({
   backgroundVideo: {
     ...StyleSheet.absoluteFillObject,
   },
+  spaceContainer: {flex: 1},
+  controlContainer: {flex: 1},
   videoOverlayContainer: {
     flex: 1,
     marginVertical: styleConfig.smartScale(15),

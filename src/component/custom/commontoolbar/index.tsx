@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import {
   Image,
@@ -46,24 +45,32 @@ const CommonToolbar: React.FC<{
     <SafeAreaView
       forceInset={{top: 'always', bottom: 'never'}}
       style={styles.saContainer}>
-        <View style={[styles.vToolbarContainer, containerStyle ]} >
-      <Pressable
-        style={styles.pIconContainer}
-        onPress={isLeftButton ? onLeftClickListener : null}>
-        {isLeftButton ? (
-          <Image source={leftIcon} style={[ styles.iconStyle ,leftIconStyle && leftIconStyle]} />
-        ) : null}
-      </Pressable>
-      <Text numberOfLines={1} style={[CS.text_white_medium, styles.tTitle, textStyle]}>
-        {title}
-      </Text>
-      <Pressable
-        style={styles.pIconContainer}
-        onPress={isRightButton ? onRightClickListener : null}>
-        {isRightButton ? (
-          <Image source={rightIcon} style={[styles.iconStyle,rightIconStyle && rightIconStyle]} />
-        ) : null}
-      </Pressable>
+      <View style={[styles.vToolbarContainer, containerStyle]}>
+        <Pressable
+          style={styles.pIconContainer}
+          onPress={isLeftButton ? onLeftClickListener : null}>
+          {isLeftButton ? (
+            <Image
+              source={leftIcon}
+              style={[styles.iconStyle, leftIconStyle && leftIconStyle]}
+            />
+          ) : null}
+        </Pressable>
+        <Text
+          numberOfLines={1}
+          style={[CS.text_white_medium, styles.tTitle, textStyle]}>
+          {title}
+        </Text>
+        <Pressable
+          style={styles.pIconContainer}
+          onPress={isRightButton ? onRightClickListener : null}>
+          {isRightButton ? (
+            <Image
+              source={rightIcon}
+              style={[styles.iconStyle, rightIconStyle && rightIconStyle]}
+            />
+          ) : null}
+        </Pressable>
       </View>
     </SafeAreaView>
   );

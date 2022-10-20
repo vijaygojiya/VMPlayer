@@ -38,7 +38,6 @@ const AppImages = {
   next: require('../images/next.png'),
 
   previous: require('../images/previous.png'),
-
 };
 
 export default AppImages;

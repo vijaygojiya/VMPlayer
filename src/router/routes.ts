@@ -1,8 +1,8 @@
 export const routes = Object.freeze({
   Splash: 'Splash',
-  Dashboard:'Dashboard',
+  Dashboard: 'Dashboard',
   VideosDetailList: 'VideosDetailList',
-  VideosDetail:'VideosDetail',
+  VideosDetail: 'VideosDetail',
   Local: 'Local',
   Video: 'Video',
   Profile: 'Profile',

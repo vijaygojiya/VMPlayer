@@ -19,9 +19,9 @@ const TabBarList = [
     Navigation: routes.Local,
   },
   {
-    Name: string.Video,
-    ActiveIcon: AppImages.ic_search_filled,
-    InActiveIcon: AppImages.ic_search_outline,
+    Name: string.Videos,
+    ActiveIcon: AppImages.ic_heart_filled,
+    InActiveIcon: AppImages.ic_heart_outline,
     Navigation: routes.Video,
   },
   {
@@ -39,10 +39,10 @@ const CustomTabBar = (props: {navigation: any}) => {
   const onTabClick = (index: React.SetStateAction<number>) => {
     setSelectedIndex(index);
     switch (index) {
-      case Type_Of_TabBar.Home:
+      case Type_Of_TabBar.Local:
         navigation.navigate(routes.Local);
         break;
-      case Type_Of_TabBar.Search:
+      case Type_Of_TabBar.Videos:
         navigation.navigate(routes.Video);
         break;
       case Type_Of_TabBar.Profile:

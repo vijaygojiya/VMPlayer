@@ -1,14 +1,14 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import styleConfig from '../../../utils/styleConfig';
 import AppImages from '../../../assets/images';
 import CommonToolbar from '../../../component/custom/commontoolbar';
-import styleConfig from '../../../utils/styleConfig';
 
-type ProfileScreenProps = {
+type VideosScreenProps = {
   navigation: any;
 };
 
-const ProfileScreen: React.FC<ProfileScreenProps> = () => {
+const VideosScreen: React.FC<VideosScreenProps> = () => {
   return (
     <View style={styles.mainContainer}>
       <CommonToolbar
@@ -16,16 +16,16 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
         isLeftButton={true}
         leftIcon={AppImages.burger}
         rightIcon={AppImages.ic_search_outline}
-        title="Profile"
+        title="Videos"
         rightIconStyle={{}}
         leftIconStyle={{}}
       />
-      <Text>Profile</Text>
+      <Text>VideosScreen</Text>
     </View>
   );
 };
 
-export default ProfileScreen;
+export default VideosScreen;
 
 const styles = StyleSheet.create({
   mainContainer: {

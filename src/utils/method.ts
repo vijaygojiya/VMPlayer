@@ -57,7 +57,9 @@ const Method = {
     const padTimeValueString = (value: any) =>
       value.toString().padStart(2, '0');
 
-    if (!Number.isFinite(duration)) return '';
+    if (!Number.isFinite(duration)) {
+      return '';
+    }
     let seconds = Math.floor(duration % 60),
       minutes = Math.floor((duration / 60) % 60),
       hours = Math.floor((duration / (60 * 60)) % 24);

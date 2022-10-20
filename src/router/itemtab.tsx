@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   iIcon: {
     width: styleConfig.countPixelRatio(25),
     height: styleConfig.countPixelRatio(25),
-    tintColor: colors.darkGreyBlue,
+    tintColor: colors.blue,
     resizeMode: 'contain',
   },
   iIconnActive: {

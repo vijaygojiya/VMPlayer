@@ -4,10 +4,9 @@ import styleConfig from '../../../utils/styleConfig';
 import GS from '../../../utils/styles';
 
 const styles = StyleSheet.create({
-  
   saContainer: {
     paddingVertical: styleConfig.smartScale(10),
-    backgroundColor: colors.darkGreyBlue,
+    backgroundColor: colors.blue,
     paddingBottom: styleConfig.smartScale(15),
     ...GS.shadowEffect,
   },

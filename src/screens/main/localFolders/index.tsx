@@ -1,12 +1,5 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  PermissionsAndroid,
-  Platform,
-  FlatList,
-  StyleSheet,
-} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, FlatList, StyleSheet} from 'react-native';
 import {Album, CameraRoll} from '@react-native-camera-roll/camera-roll';
 import {check, PERMISSIONS, request, RESULTS} from 'react-native-permissions';
 import {showToast} from '../../../utils/tost';
@@ -103,8 +96,8 @@ const LocalFolderScreen: React.FC<LocalFolderScreenProps> = ({navigation}) => {
     return <FolderListItem {...item} onItemPress={navigateToVideoDetailList} />;
   };
 
-  const navigateToVideoDetailList = (groupName: string,count: string) => {
-    navigation.navigate(routes.VideosDetailList, {groupName,count});
+  const navigateToVideoDetailList = (groupName: string, count: string) => {
+    navigation.navigate(routes.VideosDetailList, {groupName, count});
   };
 
   return (

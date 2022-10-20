@@ -3,13 +3,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {routes} from './routes';
 import SplashScreen from '../screens/auth/splash';
-import VideosDetailList from '../screens/main/videosDetailList';
 import VideosDetailScreen from '../screens/main/videoDetail';
 import CustomTabBar from './customtabbar';
 import LocalFolderScreen from '../screens/main/localFolders';
 import ProfileScreen from '../screens/main/profile';
-import VideosScreen from '../screens/main/video';
+import VideosScreen from '../screens/main/videos';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import VideosDetailList from '../screens/main/videosDetailList';
 
 const Stack = createNativeStackNavigator();
 

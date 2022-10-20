@@ -12,9 +12,7 @@ export const Type_Of_SignUp = {
 };
 
 export const Type_Of_TabBar = {
-  Home: 0,
-  Search: 1,
-  Reels: 2,
-  Activity: 3,
-  Profile: 4,
+  Local: 0,
+  Videos: 1,
+  Profile: 2,
 };

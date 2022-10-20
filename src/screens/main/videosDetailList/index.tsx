@@ -1,12 +1,10 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {Text, View, Image, FlatList, StyleSheet} from 'react-native';
+import {View, FlatList, StyleSheet} from 'react-native';
 import {
-  Album,
   CameraRoll,
   PhotoIdentifier,
 } from '@react-native-camera-roll/camera-roll';
-import colors from '../../../utils/colors';
 import styleConfig from '../../../utils/styleConfig';
 import VideoDetailListItem from '../../../component/custom/videoDetailListItem';
 import {routes} from '../../../router/routes';
@@ -99,7 +97,7 @@ const VideosDetailList = () => {
   const renderVideoDetailItem = props => {
     const {item, index} = props;
     const openVideo = () => {
-      navigation.navigate(routes.VideosDetail, {videos,index});
+      navigation.navigate(routes.VideosDetail, {videos, index});
     };
     return <VideoDetailListItem {...item} onVideoItemPress={openVideo} />;
   };
@@ -135,11 +133,8 @@ const VideosDetailList = () => {
         enablePanDownToClose={true}
         ref={bottomSheetRef}
         index={-1}
-        snapPoints={snapPoints}>
-        <View style={{flex: 1}}>
-          <Text>hellow world!@</Text>
-        </View>
-      </BottomSheet>
+        snapPoints={snapPoints}
+      />
     </View>
   );
 };

@@ -1,4 +1,4 @@
-import { PhotoIdentifier } from '@react-native-camera-roll/camera-roll';
+import {PhotoIdentifier} from '@react-native-camera-roll/camera-roll';
 import React from 'react';
 import {Text, Pressable, Image, StyleSheet, View} from 'react-native';
 import colors from '../../../utils/colors';
