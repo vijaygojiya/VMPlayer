@@ -1,4 +1,5 @@
-import CameraRoll, {
+import {
+  CameraRoll,
   PhotoIdentifier,
   PhotoIdentifiersPage,
 } from '@react-native-camera-roll/camera-roll';
@@ -16,21 +17,21 @@ const paginatePhotos = async (
   let lastPageInfo: PhotoIdentifiersPage['page_info'] | undefined;
   let photos: PhotoIdentifiersPage | undefined;
 
-  async function fetchMore(pageSize = 50) {
+  async function fetchMore(_pageSize = 50) {
     if (lastPageInfo) {
       photos = await CameraRoll.getPhotos({
-        first: pageSize,
+        first: _pageSize,
         after: lastPageInfo.end_cursor,
       });
     } else {
       photos = await CameraRoll.getPhotos({
-        first: pageSize,
+        first: _pageSize,
       });
     }
-    lastPageInfo = photos?.page_info;
+    lastPageInfo = photos.page_info;
     console.log('Last visible cursor', lastPageInfo);
     onEnd && onEnd(true);
-    return photos?.edges;
+    return photos.edges;
   }
 
   if (!lastPageInfo || lastPageInfo.has_next_page) {
@@ -56,7 +57,9 @@ export const fetchInitialPhotos = async (
   return result.data;
 };
 
-export const fetchMorePhotos = async (pageSize = 50): Promise<PhotoIdentifier[] | null> => {
+export const fetchMorePhotos = async (
+  pageSize = 50,
+): Promise<PhotoIdentifier[] | null> => {
   if (_fetchMorePhotos) {
     return await _fetchMorePhotos(pageSize);
   }

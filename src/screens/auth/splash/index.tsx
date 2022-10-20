@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {View, Text, useColorScheme, StyleSheet} from 'react-native';
 import {routes} from '../../../router/routes';
 import colors from '../../../utils/colors';
-import styleConfig from '../../../utils/styleConfig';
 import GS from '../../../utils/styles';
 
 type SplashScreenProps = {

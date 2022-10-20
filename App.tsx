@@ -9,16 +9,17 @@
  */
 
 import React from 'react';
-import {StatusBar, StyleSheet, Text, View} from 'react-native';
+import {StatusBar, StyleSheet} from 'react-native';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import AppContainer from './src/router';
 import colors from './src/utils/colors';
 
 const App = () => {
   return (
-    <View style={styles.mainContainer}>
-      <StatusBar backgroundColor={colors.darkGreyBlue} />
+    <GestureHandlerRootView style={styles.mainContainer}>
+      <StatusBar backgroundColor={colors.blue} />
       <AppContainer />
-    </View>
+    </GestureHandlerRootView>
   );
 };
 
