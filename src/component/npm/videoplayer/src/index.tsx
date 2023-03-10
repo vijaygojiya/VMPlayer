@@ -655,6 +655,11 @@ const VideoPlayer = forwardRef<VideoPlayerRef, VideoProps>(
       videoPlayer.current?.seek(time);
     };
     const onLoad = (data: OnLoadData) => {
+      const { width, height } = data.naturalSize;
+      const orientation = getVideoOrientation(height, width);
+      if (orientation === "landscape") {
+        enterFullScreen();
+      }
       setDuration(data?.duration);
       max.value = data?.duration;
       setIsLoading(false);
@@ -1240,3 +1245,13 @@ const controlStyle = StyleSheet.create({
     height: 40,
   },
 });
+
+function getVideoOrientation(height, width) {
+  if (height > width) {
+    return "portrait";
+  } else if (width > height) {
+    return "landscape";
+  } else {
+    return "square";
+  }
+}

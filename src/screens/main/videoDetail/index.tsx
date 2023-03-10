@@ -7,6 +7,7 @@ import styleConfig from "../../../utils/styleConfig";
 
 import { useSharedValue } from "react-native-reanimated";
 import VideoPlayer from "../../../component/npm/videoplayer/src";
+import { VMVideoPlayer } from "../../../component/custom/myvideoplayer";
 
 const VIDEO_DEFAULT_HEIGHT = styleConfig.width * (9 / 16);
 const VideosDetailScreen = () => {
@@ -24,6 +25,7 @@ const VideosDetailScreen = () => {
 
   return (
     <View style={{ flex: 1 }}>
+      {/* <VMVideoPlayer    source={{ uri: uri }} disableControl={false} /> */}
       <VideoPlayer
         source={{ uri: uri }}
         headerBarTitle={filename}
@@ -49,3 +51,6 @@ const VideosDetailScreen = () => {
 export default VideosDetailScreen;
 
 const styles = StyleSheet.create({});
+
+
+
