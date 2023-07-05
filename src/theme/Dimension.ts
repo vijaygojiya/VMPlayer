@@ -1,0 +1,17 @@
+export const Dimensions = {
+  defaultSemiHuge: 80,
+  extralarge: 64,
+  largePlus: 56,
+  large: 32,
+  defaultPlus: 24,
+  default: 20,
+  defaultSmallPlus: 16,
+  defaultSmall: 14,
+  smallPlusExtra: 12,
+  smallPlus: 10,
+  small: 8,
+  extraSmallPlus: 6,
+  extraSmall: 4,
+  tiny: 2,
+  none: 0,
+};

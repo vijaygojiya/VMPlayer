@@ -1,22 +1,17 @@
+import {StatusBar} from 'react-native';
 import React from 'react';
-import {StatusBar, StyleSheet} from 'react-native';
+
+import ApplicationNavigator from './src/navigators/Application';
+import {Colors, Layout} from './src/theme';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import AppContainer from './src/router';
-import colors from './src/utils/colors';
 
 const App = () => {
   return (
-    <GestureHandlerRootView style={styles.mainContainer}>
-      <StatusBar backgroundColor={colors.blue} />
-      <AppContainer />
+    <GestureHandlerRootView style={[Layout.fill]}>
+      <StatusBar backgroundColor={Colors.blue} />
+      <ApplicationNavigator />
     </GestureHandlerRootView>
   );
 };
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-  },
-});
 
 export default App;
