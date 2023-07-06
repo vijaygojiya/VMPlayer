@@ -1,24 +1,29 @@
-import {FlatList, ListRenderItem, Text, View} from 'react-native';
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import { FlatList, ListRenderItem, Text, View } from "react-native";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
-} from '@gorhom/bottom-sheet';
+} from "@gorhom/bottom-sheet";
 import {
   PhotoIdentifier,
   CameraRoll,
-} from '@react-native-camera-roll/camera-roll';
-import {useNavigation, useRoute} from '@react-navigation/native';
-import {VideoListItem} from '../../components';
-import {Routes} from '../../navigators/routes';
-import styles from './styles';
+} from "@react-native-camera-roll/camera-roll";
+import { VideoListItem } from "../../components";
+import { Routes } from "../../navigators/routes";
+import styles from "./styles";
+import { VideosListScreenType } from "../../navigators/types/navigation";
 
-const VideosList = () => {
+const VideosList = (props: VideosListScreenType) => {
   const [videos, setVideos] = useState<PhotoIdentifier[]>([]);
 
-  const navigation = useNavigation();
-  const myRoutes = useRoute();
-  const {groupName, count} = myRoutes.params;
+  const { navigation, route } = props;
+  const { groupName, count } = route.params;
   useEffect(() => {
     getVideosData();
   }, []);
@@ -27,7 +32,7 @@ const VideosList = () => {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   // variables
-  const snapPoints = useMemo(() => ['50%'], []);
+  const snapPoints = useMemo(() => ["50%"], []);
 
   // const openBottomShhet = () => {
   //   // bottomSheetRef?.current?.expand();\
@@ -42,33 +47,32 @@ const VideosList = () => {
         appearsOnIndex={0}
       />
     ),
-    [],
+    []
   );
 
   const getVideosData = async () => {
     try {
       const videosData = await CameraRoll.getPhotos({
         first: count,
-        assetType: 'Videos',
+        assetType: "Videos",
         groupName: groupName,
         include: [
-          'filename',
-          'fileSize',
-          'location',
-          'imageSize',
-          'playableDuration',
+          "filename",
+          "fileSize",
+          "location",
+          "imageSize",
+          "playableDuration",
         ],
       });
 
-      console.log('===>', videosData);
       setVideos(videosData.edges);
     } catch (error) {
-      console.log('err0', error);
+      console.log("err0", error);
     }
   };
 
-  const renderVideoDetailItem: ListRenderItem<PhotoIdentifier> = props => {
-    const {item} = props;
+  const renderVideoDetailItem: ListRenderItem<PhotoIdentifier> = (props) => {
+    const { item } = props;
     const openVideo = () => {
       navigation.navigate(Routes.VideoDetail);
     };
@@ -81,7 +85,7 @@ const VideosList = () => {
         data={videos}
         renderItem={renderVideoDetailItem}
         bounces={false}
-        overScrollMode={'never'}
+        overScrollMode={"never"}
         keyExtractor={(_, index) => index.toString()}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.flContainer}
@@ -92,7 +96,8 @@ const VideosList = () => {
         enablePanDownToClose={true}
         ref={bottomSheetRef}
         index={-1}
-        snapPoints={snapPoints}>
+        snapPoints={snapPoints}
+      >
         <Text>af</Text>
       </BottomSheet>
     </View>

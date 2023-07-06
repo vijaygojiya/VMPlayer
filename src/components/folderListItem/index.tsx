@@ -1,7 +1,7 @@
-import React from 'react';
-import {View} from 'react-native';
-import {Text, Pressable, Image, StyleSheet} from 'react-native';
-import {Colors, Images} from '../../theme';
+import React from "react";
+import { View } from "react-native";
+import { Text, Pressable, Image, StyleSheet } from "react-native";
+import { Colors, Images } from "../../theme";
 
 interface FolderListItemPropsType {
   title: string;
@@ -9,26 +9,28 @@ interface FolderListItemPropsType {
   onItemPress: (name: string, count: number) => void;
 }
 
-const FolderListItem: React.FC<FolderListItemPropsType> = props => {
-  const {title, count, onItemPress} = props;
+const FolderListItem: React.FC<FolderListItemPropsType> = (props) => {
+  const { title, count, onItemPress } = props;
 
   return (
     <Pressable
-      android_ripple={{color: Colors.grey}}
+      android_ripple={{ color: Colors.grey }}
       onPress={() => {
         onItemPress(title, count);
       }}
-      style={styles.rowContainer}>
+      style={styles.rowContainer}
+    >
       <Image source={Images.folderFilled} style={styles.folderIconStyle} />
       <View style={styles.titleContainer}>
         <Text
           numberOfLines={2}
-          ellipsizeMode={'tail'}
-          style={[styles.titleTextStyle]}>
+          ellipsizeMode={"tail"}
+          style={[styles.titleTextStyle]}
+        >
           {title}
         </Text>
         <Text numberOfLines={1} style={styles.countTextStyle}>
-          {count} {count > 1 ? 'videos' : 'video'}
+          {count} {count > 1 ? "videos" : "video"}
         </Text>
       </View>
     </Pressable>
@@ -45,7 +47,7 @@ const styles = StyleSheet.create({
     tintColor: Colors.blue,
   },
   rowContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     paddingVertical: 5,
     paddingHorizontal: 10,
     marginVertical: 3,
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: "space-around",
   },
   titleTextStyle: {
     fontSize: 16,

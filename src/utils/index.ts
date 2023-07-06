@@ -1,2 +1,2 @@
-export * from './Methods';
-export * from './Constant';
+export * from "./Methods";
+export * from "./Constant";

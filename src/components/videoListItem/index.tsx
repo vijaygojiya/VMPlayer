@@ -1,28 +1,34 @@
-import {PhotoIdentifier} from '@react-native-camera-roll/camera-roll';
-import React from 'react';
-import {Text, Pressable, Image, StyleSheet, View} from 'react-native';
-import {Colors} from '../../theme';
-import Methods from '../../utils/Methods';
+import { PhotoIdentifier } from "@react-native-camera-roll/camera-roll";
+import React from "react";
+import { Text, Pressable, Image, StyleSheet, View } from "react-native";
+import { Colors } from "../../theme";
+import Methods from "../../utils/Methods";
 
-const VideoListItem: React.FC<PhotoIdentifier> = props => {
-  const {filename, playableDuration, uri} = props.node.image;
-  const {onVideoItemPress} = props;
+interface VideoListItemProps extends PhotoIdentifier {
+  onVideoItemPress: () => void;
+}
+
+const VideoListItem: React.FC<VideoListItemProps> = (props) => {
+  const { filename, playableDuration, uri } = props.node.image;
+  const { onVideoItemPress } = props;
 
   return (
     <Pressable
-      android_ripple={{color: Colors.grey}}
+      android_ripple={{ color: Colors.grey }}
       onPress={onVideoItemPress}
-      style={styles.rowContainer}>
+      style={styles.rowContainer}
+    >
       <Image
         resizeMode="cover"
-        source={{uri: uri}}
+        source={{ uri: uri }}
         style={styles.folderIconStyle}
       />
       <View style={styles.titleContainer}>
         <Text
           numberOfLines={2}
-          ellipsizeMode={'tail'}
-          style={[styles.titleTextStyle]}>
+          ellipsizeMode={"tail"}
+          style={[styles.titleTextStyle]}
+        >
           {filename}
         </Text>
         <Text numberOfLines={1} style={styles.countTextStyle}>
@@ -43,7 +49,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   rowContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     paddingVertical: 5,
     paddingHorizontal: 10,
     marginVertical: 3,
@@ -51,7 +57,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: "space-around",
   },
   titleTextStyle: {
     fontSize: 16,

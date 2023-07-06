@@ -1,15 +1,15 @@
-import {Dimensions, Platform} from 'react-native';
-const {width, height} = Dimensions.get('window');
-const isIphone = Platform.OS === 'ios';
-const isAndroid = Platform.OS === 'android';
+import { Dimensions, Platform } from "react-native";
+const { width, height } = Dimensions.get("window");
+const isIphone = Platform.OS === "ios";
+const isAndroid = Platform.OS === "android";
 
 const APP_FONTS = {
-  MONTSERRAT_LIGHT: 'Montserrat-Light',
-  MONTSERRAT_MEDIUM: 'Montserrat-Medium',
-  MONTSERRAT_BOLD: 'Montserrat-Bold',
-  MONTSERRAT_ITALIC: 'Montserrat-Italic',
-  MONTSERRAT_REGULAR: 'Montserrat-Regular',
-  MONTSERRAT_SEMIBOLD: 'Montserrat-SemiBold',
+  MONTSERRAT_LIGHT: "Montserrat-Light",
+  MONTSERRAT_MEDIUM: "Montserrat-Medium",
+  MONTSERRAT_BOLD: "Montserrat-Bold",
+  MONTSERRAT_ITALIC: "Montserrat-Italic",
+  MONTSERRAT_REGULAR: "Montserrat-Regular",
+  MONTSERRAT_SEMIBOLD: "Montserrat-SemiBold",
 };
 
 export default {

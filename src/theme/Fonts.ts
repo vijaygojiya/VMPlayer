@@ -1,8 +1,8 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from "react-native";
 
-import StyleConfig from './StyleConfig';
-import {FontSize} from './Variables';
-import Colors from './Colors';
+import StyleConfig from "./StyleConfig";
+import { FontSize } from "./Variables";
+import Colors from "./Colors";
 
 const Fonts = StyleSheet.create({
   textTiny: {
@@ -62,42 +62,42 @@ const Fonts = StyleSheet.create({
     color: Colors.black,
   },
   textBold: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   textUppercase: {
-    textTransform: 'uppercase',
+    textTransform: "uppercase",
   },
   titleSmall: {
     fontSize: FontSize.small * 1.5,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: Colors.black,
   },
   titleRegularBlack: {
     fontSize: FontSize.regular * 2,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: Colors.black,
   },
   titleRegularWhite: {
     fontSize: FontSize.regular * 2,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: Colors.white,
   },
   titleLarge: {
     fontSize: FontSize.large * 2,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: Colors.black,
   },
   textCenter: {
-    textAlign: 'center',
+    textAlign: "center",
   },
   textJustify: {
-    textAlign: 'justify',
+    textAlign: "justify",
   },
   textLeft: {
-    textAlign: 'left',
+    textAlign: "left",
   },
   textRight: {
-    textAlign: 'right',
+    textAlign: "right",
   },
   textError: {
     color: Colors.red,
@@ -112,8 +112,8 @@ const Fonts = StyleSheet.create({
     color: Colors.lightGrey,
   },
   textLobster: {
-    fontFamily: 'lobster',
-    fontWeight: 'normal',
+    fontFamily: "lobster",
+    fontWeight: "normal",
   },
   textPopinsBold: {
     fontFamily: StyleConfig.fontBold,

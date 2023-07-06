@@ -1,10 +1,10 @@
 const Methods = {
   getDurationTime: (duration: any) => {
     const padTimeValueString = (value: any) =>
-      value.toString().padStart(2, '0');
+      value.toString().padStart(2, "0");
 
     if (!Number.isFinite(duration)) {
-      return '';
+      return "";
     }
     let seconds = Math.floor(duration % 60),
       minutes = Math.floor((duration / 60) % 60),
@@ -16,10 +16,10 @@ const Methods = {
     seconds = padTimeValueString(seconds);
 
     if (isHrsZero) {
-      return minutes + ':' + seconds;
+      return minutes + ":" + seconds;
     }
 
-    return hours + ':' + minutes + ':' + seconds;
+    return hours + ":" + minutes + ":" + seconds;
   },
 };
 

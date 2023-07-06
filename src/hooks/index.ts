@@ -1,1 +1,1 @@
-export {default as useIsForeground} from './use-foreground';
+export { default as useIsForeground } from "./use-foreground";

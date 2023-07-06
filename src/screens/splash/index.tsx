@@ -1,13 +1,13 @@
-import {Image, View} from 'react-native';
-import React, {useEffect} from 'react';
-import styles from './styles';
-import {CommonActions, useNavigation} from '@react-navigation/native';
-import {Routes} from '../../navigators/routes';
-import {Images, Layout} from '../../theme';
+import { Image, View } from "react-native";
+import React, { useEffect } from "react";
+import styles from "./styles";
+import { CommonActions } from "@react-navigation/native";
+import { Routes } from "../../navigators/routes";
+import { Images, Layout } from "../../theme";
+import { SplashScreenType } from "../../navigators/types/navigation";
 
-const SplashScreen = () => {
-  const navigation = useNavigation();
-
+const SplashScreen = (props: SplashScreenType) => {
+  const { navigation } = props;
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       handleAppNavFlow();
@@ -21,8 +21,8 @@ const SplashScreen = () => {
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
-        routes: [{name: Routes.FoldersList}],
-      }),
+        routes: [{ name: Routes.FoldersList }],
+      })
     );
   };
   return (
