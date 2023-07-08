@@ -14,17 +14,17 @@ import {
   PhotoIdentifier,
   CameraRoll,
 } from "@react-native-camera-roll/camera-roll";
-import { VideoListItem } from "../../components";
+import { MenuBar, VideoListItem } from "../../components";
 import { Routes } from "../../navigators/routes";
 import styles from "./styles";
 import { VideosListScreenType } from "../../navigators/types/navigation";
 import { useMMKVObject } from "react-native-mmkv";
+import { Images, Layout } from "../../theme";
 
 const VideosList = (props: VideosListScreenType) => {
   const { navigation, route } = props;
   const { groupName, count } = route.params;
   const [videos, setVideos] = useMMKVObject<PhotoIdentifier[]>(groupName);
-
 
   useEffect(() => {
     getVideosData();
@@ -77,13 +77,20 @@ const VideosList = (props: VideosListScreenType) => {
   const renderVideoDetailItem: ListRenderItem<PhotoIdentifier> = (props) => {
     const { item, index } = props;
     const openVideo = () => {
-      navigation.navigate(Routes.VideoDetail, { videos, index });
+      if (videos?.length) {
+        navigation.navigate(Routes.VideoDetail, { videos: videos, index });
+      }
     };
     return <VideoListItem {...item} onVideoItemPress={openVideo} />;
   };
 
   return (
-    <View>
+    <View style={[Layout.fill]}>
+      <MenuBar
+        leftIcon={Images.arrow}
+        title={groupName}
+        onLeftClickListener={navigation.goBack}
+      />
       <FlatList
         data={videos}
         renderItem={renderVideoDetailItem}

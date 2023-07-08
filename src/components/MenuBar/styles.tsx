@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
   },
 
   iconStyle: {
-    height: 30,
-    width: 30,
+    height: 24,
+    width: 24,
     tintColor: Colors.white,
   },
 });

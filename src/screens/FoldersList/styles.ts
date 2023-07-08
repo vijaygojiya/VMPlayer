@@ -4,9 +4,9 @@ const styles = StyleSheet.create({
   flContainer: {
     marginHorizontal: 8,
   },
-  searchIconStyle: {
-    height: 24,
-    width: 24,
+  hamburgerIconStyle: {
+    height: 30,
+    width: 30,
   },
 });
 export default styles;

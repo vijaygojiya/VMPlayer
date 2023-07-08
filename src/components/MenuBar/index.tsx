@@ -17,10 +17,10 @@ export interface MenuBarProps {
   containerStyle?: ViewStyle;
   title: string;
   textStyle?: TextStyle;
-  leftIcon: ImageSourcePropType;
+  leftIcon?: ImageSourcePropType;
   onLeftClickListener?: () => void;
   leftIconStyle?: ImageStyle;
-  rightIcon: ImageSourcePropType;
+  rightIcon?: ImageSourcePropType;
   onRIghtClickListener?: () => void;
   rightIconStyle?: ImageStyle;
 }

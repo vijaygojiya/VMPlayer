@@ -1,8 +1,9 @@
 import { PhotoIdentifier } from "@react-native-camera-roll/camera-roll";
 import React from "react";
 import { Text, Pressable, Image, StyleSheet, View } from "react-native";
-import { Colors } from "../../theme";
+import { Colors, Fonts } from "../../theme";
 import Methods from "../../utils/Methods";
+import FastImage from "react-native-fast-image";
 
 interface VideoListItemProps extends PhotoIdentifier {
   onVideoItemPress: () => void;
@@ -18,20 +19,23 @@ const VideoListItem: React.FC<VideoListItemProps> = (props) => {
       onPress={onVideoItemPress}
       style={styles.rowContainer}
     >
-      <Image
+      <FastImage
         resizeMode="cover"
-        source={{ uri: uri }}
+        source={{ uri }}
         style={styles.folderIconStyle}
       />
       <View style={styles.titleContainer}>
         <Text
           numberOfLines={2}
           ellipsizeMode={"tail"}
-          style={[styles.titleTextStyle]}
+          style={[Fonts.textNormal, Fonts.textSemibold, styles.titleTextStyle]}
         >
           {filename}
         </Text>
-        <Text numberOfLines={1} style={styles.countTextStyle}>
+        <Text
+          numberOfLines={1}
+          style={[Fonts.textNormal, styles.countTextStyle]}
+        >
           {Methods.getDurationTime(playableDuration)}
         </Text>
       </View>
@@ -47,6 +51,7 @@ const styles = StyleSheet.create({
     width: (16 / 8) * 50,
     marginEnd: 10,
     borderRadius: 10,
+    backgroundColor: Colors.grey,
   },
   rowContainer: {
     flexDirection: "row",
@@ -60,7 +65,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   titleTextStyle: {
-    fontSize: 16,
     color: Colors.lightGreyBlue,
   },
   countTextStyle: {

@@ -104,7 +104,7 @@ const FoldersList = (props: FoldersListScreenType) => {
         leftIcon={Images.hamburger}
         title="Folders"
         rightIcon={Images.search}
-        rightIconStyle={styles.searchIconStyle}
+        leftIconStyle={styles.hamburgerIconStyle}
         onRIghtClickListener={() => {
           // setIsGridView((v) => !v);
         }}

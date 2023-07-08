@@ -136,6 +136,7 @@ const Layouts = StyleSheet.create({
   right0: {
     right: 0,
   },
+  absoluteFillObject: StyleSheet.absoluteFillObject,
   removeTintColor: {
     tintColor: undefined,
   },
