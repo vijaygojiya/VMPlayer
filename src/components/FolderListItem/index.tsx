@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { Text, Pressable, Image, StyleSheet } from "react-native";
-import { Colors, Images } from "../../theme";
+import { Colors, Fonts, Images } from "../../theme";
 
 interface FolderListItemPropsType {
   title: string;
@@ -25,11 +25,14 @@ const FolderListItem: React.FC<FolderListItemPropsType> = (props) => {
         <Text
           numberOfLines={2}
           ellipsizeMode={"tail"}
-          style={[styles.titleTextStyle]}
+          style={[Fonts.textRegular, styles.titleTextStyle]}
         >
           {title}
         </Text>
-        <Text numberOfLines={1} style={styles.countTextStyle}>
+        <Text
+          numberOfLines={1}
+          style={[Fonts.textSmall, styles.countTextStyle]}
+        >
           {count} {count > 1 ? "videos" : "video"}
         </Text>
       </View>
@@ -58,12 +61,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   titleTextStyle: {
-    fontSize: 16,
     color: Colors.lightGreyBlue,
   },
   countTextStyle: {
     color: Colors.lightGreyBlue,
-    fontSize: 13,
     opacity: 0.5,
   },
 });

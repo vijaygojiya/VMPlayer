@@ -18,12 +18,14 @@ import { VideoListItem } from "../../components";
 import { Routes } from "../../navigators/routes";
 import styles from "./styles";
 import { VideosListScreenType } from "../../navigators/types/navigation";
+import { useMMKVObject } from "react-native-mmkv";
 
 const VideosList = (props: VideosListScreenType) => {
-  const [videos, setVideos] = useState<PhotoIdentifier[]>([]);
-
   const { navigation, route } = props;
   const { groupName, count } = route.params;
+  const [videos, setVideos] = useMMKVObject<PhotoIdentifier[]>(groupName);
+
+
   useEffect(() => {
     getVideosData();
   }, []);
@@ -62,6 +64,7 @@ const VideosList = (props: VideosListScreenType) => {
           "location",
           "imageSize",
           "playableDuration",
+          "orientation",
         ],
       });
 
@@ -72,9 +75,9 @@ const VideosList = (props: VideosListScreenType) => {
   };
 
   const renderVideoDetailItem: ListRenderItem<PhotoIdentifier> = (props) => {
-    const { item } = props;
+    const { item, index } = props;
     const openVideo = () => {
-      navigation.navigate(Routes.VideoDetail);
+      navigation.navigate(Routes.VideoDetail, { videos, index });
     };
     return <VideoListItem {...item} onVideoItemPress={openVideo} />;
   };

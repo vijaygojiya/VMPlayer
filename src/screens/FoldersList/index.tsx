@@ -2,11 +2,13 @@ import { FlatList, ListRenderItem, Platform, View } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import { Album, CameraRoll } from "@react-native-camera-roll/camera-roll";
 import { check, PERMISSIONS, RESULTS, request } from "react-native-permissions";
-import { StyleConfig } from "../../theme";
-import { FolderListItem } from "../../components";
+import { Images, Layout, StyleConfig } from "../../theme";
+import { FolderListItem, MenuBar } from "../../components";
 import styles from "./styles";
 import { Routes } from "../../navigators/routes";
 import { FoldersListScreenType } from "../../navigators/types/navigation";
+import { useMMKVObject } from "react-native-mmkv";
+import { LocalStorageKeys } from "../../utils/Enum";
 
 const showToast = (_: any) => {};
 
@@ -17,7 +19,10 @@ const permissionVideo = StyleConfig.isAndroid
   : PERMISSIONS.IOS.PHOTO_LIBRARY;
 
 const FoldersList = (props: FoldersListScreenType) => {
-  const [folders, setFolders] = useState<Album[]>([]);
+  // const [isGridView, setIsGridView] = useState(false);
+  const [folders, setFolders] = useMMKVObject<Album[]>(
+    LocalStorageKeys.folders
+  );
   const { navigation } = props;
 
   const askPermission = useCallback(async () => {
@@ -94,15 +99,27 @@ const FoldersList = (props: FoldersListScreenType) => {
     return <FolderListItem {...item} onItemPress={handleOpenVideosList} />;
   };
   return (
-    <FlatList
-      bounces={false}
-      overScrollMode={"never"}
-      keyExtractor={(_, index) => index.toString()}
-      data={folders}
-      renderItem={renderFolderItem}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.flContainer}
-    />
+    <View style={Layout.fill}>
+      <MenuBar
+        leftIcon={Images.hamburger}
+        title="Folders"
+        rightIcon={Images.search}
+        rightIconStyle={styles.searchIconStyle}
+        onRIghtClickListener={() => {
+          // setIsGridView((v) => !v);
+        }}
+      />
+      <FlatList
+        bounces={false}
+        overScrollMode={"never"}
+        keyExtractor={(_, index) => index.toString()}
+        data={folders ?? []}
+        renderItem={renderFolderItem}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.flContainer}
+        // {...(isGridView && { numColumns: 3 })}
+      />
+    </View>
   );
 };
 
