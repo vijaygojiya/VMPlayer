@@ -1,7 +1,7 @@
 import { PhotoIdentifier } from "@react-native-camera-roll/camera-roll";
 import React from "react";
 import { Text, Pressable, Image, StyleSheet, View } from "react-native";
-import { Colors, Fonts } from "../../theme";
+import { Colors, Fonts, Images, Layout } from "../../theme";
 import Methods from "../../utils/Methods";
 import FastImage from "react-native-fast-image";
 
@@ -17,7 +17,7 @@ const VideoListItem: React.FC<VideoListItemProps> = (props) => {
     <Pressable
       android_ripple={{ color: Colors.grey }}
       onPress={onVideoItemPress}
-      style={styles.rowContainer}
+      style={[Layout.row, styles.rowContainer]}
     >
       <FastImage
         resizeMode="cover"
@@ -28,7 +28,7 @@ const VideoListItem: React.FC<VideoListItemProps> = (props) => {
         <Text
           numberOfLines={2}
           ellipsizeMode={"tail"}
-          style={[Fonts.textNormal, Fonts.textSemibold, styles.titleTextStyle]}
+          style={[Fonts.textNormal, Fonts.textMedium, styles.titleTextStyle]}
         >
           {filename}
         </Text>
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.grey,
   },
   rowContainer: {
-    flexDirection: "row",
     paddingVertical: 5,
     paddingHorizontal: 10,
     marginVertical: 3,
@@ -62,14 +61,13 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     flex: 1,
-    justifyContent: "space-around",
   },
   titleTextStyle: {
     color: Colors.lightGreyBlue,
   },
   countTextStyle: {
     color: Colors.lightGreyBlue,
-    fontSize: 13,
     opacity: 0.5,
+    marginTop: 4,
   },
 });

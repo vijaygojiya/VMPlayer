@@ -1,4 +1,4 @@
-import { Text, View, useWindowDimensions } from "react-native";
+import { Image, Text, View, useWindowDimensions } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import Video, {
   LoadError,
@@ -8,7 +8,7 @@ import Video, {
   OnSeekData,
 } from "react-native-video";
 import { VideoDetailScreenType } from "../../navigators/types/navigation";
-import { Colors, Fonts, Layout, StyleConfig } from "../../theme";
+import { Colors, Fonts, Images, Layout } from "../../theme";
 import Orientation, {
   OrientationLocker,
   PORTRAIT,
@@ -58,7 +58,7 @@ const theme = {
 const VideoDetail = ({ navigation, route }: VideoDetailScreenType) => {
   const { videos, index } = route.params;
   const [currentVideoIndex, setCurrentVideoIndex] = useState(index);
-  const [paused, setPause] = useState(true);
+  const [paused, setPause] = useState(false);
   const [loading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -82,7 +82,7 @@ const VideoDetail = ({ navigation, route }: VideoDetailScreenType) => {
   const zoomPercentageOpacity = useSharedValue(0);
 
   const videoRef = useRef<Video | null>(null);
-  const { playableDuration, uri, filename, orientation, height, width } =
+  const { uri, filename, orientation, height, width } =
     videos[currentVideoIndex].node.image;
 
   const insets = useSafeAreaInsets();
@@ -370,6 +370,59 @@ const VideoDetail = ({ navigation, route }: VideoDetailScreenType) => {
         })}`;
   };
 
+  const togglePlayOnJS = () => {
+    setPause((prev) => !prev);
+  };
+  const onPauseTapHandler = () => {
+    "worklet";
+    const status = checkTapTakesEffect();
+    if (!status) {
+      return;
+    }
+    runOnJS(togglePlayOnJS)();
+  };
+  const handlerNextPrev = (isNext: boolean) => {
+    if (isNext) {
+      if (currentTime === videos.length - 1) {
+        return;
+      }
+      setCurrentVideoIndex((currentIndex) => currentIndex + 1);
+    } else {
+      if (isNext) {
+        if (currentTime === 0) {
+          return;
+        }
+        setCurrentVideoIndex((currentIndex) => currentIndex - 1);
+      }
+    }
+  };
+
+  const onNextTapHandler = () => {
+    "worklet";
+    const status = checkTapTakesEffect();
+    if (!status) {
+      return;
+    }
+    runOnJS(handlerNextPrev)(true);
+  };
+
+  const onPreviousTapHandler = () => {
+    "worklet";
+    const status = checkTapTakesEffect();
+    if (!status) {
+      return;
+    }
+    runOnJS(handlerNextPrev)(false);
+  };
+  const onBackIconPress = () => {
+    "worklet";
+    const status = checkTapTakesEffect();
+    if (!status) {
+      return;
+    }
+
+    runOnJS(navigation.goBack)();
+  };
   return (
     <>
       <OrientationLocker orientation={height > width ? PORTRAIT : LANDSCAPE} />
@@ -382,7 +435,7 @@ const VideoDetail = ({ navigation, route }: VideoDetailScreenType) => {
               ref={videoRef}
               repeat={true}
               source={{ uri }}
-              resizeMode="contain"
+              resizeMode="cover"
               paused={paused}
               onLoadStart={onLoadStart}
               onLoad={onLoad}
@@ -413,8 +466,28 @@ const VideoDetail = ({ navigation, route }: VideoDetailScreenType) => {
               controlViewStyles,
             ]}
           >
-            {/* <Animated.View> */}
-            <View style={[styles.bottomControlGroup, Layout.rowHCenter]}>
+            <View style={[Layout.rowHCenter, styles.topControlContainer]}>
+              <TapController onPress={onBackIconPress}>
+                <Image
+                  source={Images.chevron}
+                  resizeMode="contain"
+                  style={[Layout.rotate90Inverse, styles.playerIcon]}
+                />
+              </TapController>
+              <Text
+                numberOfLines={2}
+                style={[
+                  Layout.fill,
+                  Fonts.textRegular,
+                  Fonts.textBold,
+                  { color: Colors.white90 },
+                ]}
+              >
+                {filename}
+              </Text>
+            </View>
+            <View style={Layout.fill} />
+            <View style={[Layout.rowHCenter, styles.controlBg]}>
               <TapController onPress={toggleTimer}>
                 <Text style={[Fonts.textNormal, styles.timerText]}>
                   {calculateTime()}
@@ -441,7 +514,35 @@ const VideoDetail = ({ navigation, route }: VideoDetailScreenType) => {
                 {formatTimeToMins(duration)}
               </Text>
             </View>
-            {/* </Animated.View> */}
+            <View
+              style={[
+                styles.bottomControlGroup,
+                Layout.rowCenter,
+                styles.controlBg,
+              ]}
+            >
+              <TapController onPress={onPreviousTapHandler}>
+                <Image
+                  source={Images.next}
+                  resizeMode="contain"
+                  style={[Layout.mirror, styles.playerIcon]}
+                />
+              </TapController>
+              <TapController onPress={onPauseTapHandler}>
+                <Image
+                  style={styles.playerIcon}
+                  resizeMode="contain"
+                  source={paused ? Images.play : Images.pause}
+                />
+              </TapController>
+              <TapController onPress={onNextTapHandler}>
+                <Image
+                  style={styles.playerIcon}
+                  resizeMode="contain"
+                  source={Images.next}
+                />
+              </TapController>
+            </View>
           </Animated.View>
         </View>
       </GestureDetector>

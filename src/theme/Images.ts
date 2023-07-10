@@ -14,9 +14,7 @@ const Images = {
   play: require("./assets/images/play.png"),
   pause: require("./assets/images/pause.png"),
   forward: require("./assets/images/forward.png"),
-
-
-  
+  next: require("./assets/images/next.png"),
 };
 
 export default Images;

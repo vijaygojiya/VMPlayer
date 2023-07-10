@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   controlContainer: {
-    backgroundColor: Colors.black50,
     justifyContent: "center",
     overflow: "hidden",
   },
@@ -25,10 +24,23 @@ const styles = StyleSheet.create({
   group: {
     // paddingHorizontal: 20,
   },
+  controlBg: {
+    // backgroundColor: Colors.black20,
+    paddingBottom: 10,
+  },
   bottomControlGroup: {
-    marginBottom: 10,
+    paddingBottom: 40,
   },
   timerText: {
+    marginHorizontal: 10,
+  },
+  topControlContainer: {
+    marginTop: 20,
+  },
+  playerIcon: {
+    height: 24,
+    width: 24,
+    paddingHorizontal: 28,
     marginHorizontal: 10,
   },
 });
