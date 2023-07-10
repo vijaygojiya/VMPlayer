@@ -21,7 +21,7 @@ export interface MenuBarProps {
   onLeftClickListener?: () => void;
   leftIconStyle?: ImageStyle;
   rightIcon?: ImageSourcePropType;
-  onRIghtClickListener?: () => void;
+  onRightClickListener?: () => void;
   rightIconStyle?: ImageStyle;
 }
 
@@ -32,11 +32,10 @@ const MenuBar = React.memo(
     textStyle,
     leftIcon,
     onLeftClickListener,
-
     leftIconStyle,
     rightIcon,
     rightIconStyle,
-    onRIghtClickListener,
+    onRightClickListener,
   }: MenuBarProps) => {
     return (
       <SafeAreaView
@@ -89,7 +88,7 @@ const MenuBar = React.memo(
                 Layout.alignItemsCenter,
                 styles.iconContainer,
               ]}
-              onPress={onRIghtClickListener}
+              onPress={onRightClickListener}
               hitSlop={10}
             >
               <Image

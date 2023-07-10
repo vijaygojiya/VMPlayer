@@ -19,7 +19,6 @@ const permissionVideo = StyleConfig.isAndroid
   : PERMISSIONS.IOS.PHOTO_LIBRARY;
 
 const FoldersList = (props: FoldersListScreenType) => {
-  // const [isGridView, setIsGridView] = useState(false);
   const [folders, setFolders] = useMMKVObject<Album[]>(
     LocalStorageKeys.folders
   );
@@ -86,7 +85,7 @@ const FoldersList = (props: FoldersListScreenType) => {
       });
       setFolders(sortData);
     } catch (error) {
-      console.log("eerr-~~~~~~~~~~~~~~~>", error);
+      console.log("fetchAllVideoFolders-~~~~~~~~~~~~~~~>", error);
     }
   };
 
@@ -105,9 +104,6 @@ const FoldersList = (props: FoldersListScreenType) => {
         title="Folders"
         rightIcon={Images.search}
         leftIconStyle={styles.hamburgerIconStyle}
-        onRIghtClickListener={() => {
-          // setIsGridView((v) => !v);
-        }}
       />
       <FlatList
         bounces={false}
@@ -117,7 +113,6 @@ const FoldersList = (props: FoldersListScreenType) => {
         renderItem={renderFolderItem}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.flContainer}
-        // {...(isGridView && { numColumns: 3 })}
       />
     </View>
   );
