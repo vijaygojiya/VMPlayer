@@ -33,8 +33,6 @@ import Methods from "../../utils/Methods";
 import { formatTime, formatTimeToMins, secondToTime } from "../../utils";
 import { Slider } from "react-native-awesome-slider";
 
-const ytUrl = `https://rr3---sn-8vq54voxpo-pn3l.googlevideo.com/videoplayback?expire=1688940020&ei=lNmqZOzfIZinv_IPt-y98Ao&ip=46.246.122.182&id=o-AEbnFTZ3_gLje9X3DPAqfgIzQPyFghlHb8qWi27N1MB9&itag=18&source=youtube&requiressl=yes&spc=Ul2Sq11Pwj9IyhyK82OLtB1k65EErQVXxWg0r1UiMQ&vprv=1&svpuc=1&mime=video%2Fmp4&ns=uR0vQyjtej4h6cX1wMB9--MO&cnr=14&ratebypass=yes&dur=342.029&lmt=1657844336054895&fexp=24007246,24350017,24363392&beids=24350017&c=WEB&txp=6318224&n=ziuUvphYtRnA-Q&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRgIhAPBwB4jzxkAh_BVmBTR291MahD2HPJJDpSwGuRQIfa4VAiEAkso6jzRhtwAfI3XUyjM-phmklBoQ_pZyk5e8lkmUmQI%3D&redirect_counter=1&rm=sn-5goly7e&req_id=583d7f8acaf6a3ee&cms_redirect=yes&ipbypass=yes&mh=lH&mip=2402:8100:26b6:d11d:6921:7c97:9b08:60ba&mm=31&mn=sn-8vq54voxpo-pn3l&ms=au&mt=1688917995&mv=m&mvi=3&pcm2cms=yes&pl=48&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pcm2cms,pl&lsig=AG3C_xAwRAIgWtpE5Mj45h9xGSt0Fh6lPt-GkmQ9CWUnChKFae7h2QgCIBlDey2UP8q6WkizAp9vleHjZgeSre79Cu2IBMW3v5Pf`;
-
 const minZoom = 0.25; // 25% zoom
 const maxZoom = 2; // 200% zoom
 const controlTimeout = 2000;

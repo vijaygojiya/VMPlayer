@@ -7,14 +7,16 @@ import FastImage from "react-native-fast-image";
 
 interface VideoListItemProps extends PhotoIdentifier {
   onVideoItemPress: () => void;
+  onVideoItemLongPress: () => void;
 }
 
 const VideoListItem: React.FC<VideoListItemProps> = (props) => {
   const { filename, playableDuration, uri } = props.node.image;
-  const { onVideoItemPress } = props;
+  const { onVideoItemPress, onVideoItemLongPress } = props;
 
   return (
     <Pressable
+      onLongPress={onVideoItemLongPress}
       android_ripple={{ color: Colors.grey }}
       onPress={onVideoItemPress}
       style={[Layout.row, styles.rowContainer]}
