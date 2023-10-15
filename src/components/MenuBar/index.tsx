@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Image,
   ImageSourcePropType,
@@ -8,11 +8,11 @@ import {
   TextStyle,
   View,
   ViewStyle,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
-import styles from "./styles";
-import { Colors, Fonts, Layout } from "../../theme";
+import styles from './styles';
+import {Colors, Fonts, Layout} from '../../theme';
 export interface MenuBarProps {
   containerStyle?: ViewStyle;
   title: string;
@@ -39,17 +39,15 @@ const MenuBar = React.memo(
   }: MenuBarProps) => {
     return (
       <SafeAreaView
-        edges={["right", "top", "left"]}
-        style={{ backgroundColor: Colors.blue }}
-      >
+        edges={['right', 'top', 'left']}
+        style={{backgroundColor: Colors.blue}}>
         <View
           style={[
             Layout.row,
             Layout.alignItemsCenter,
             styles.container,
             containerStyle,
-          ]}
-        >
+          ]}>
           {leftIcon && (
             <Pressable
               style={[
@@ -58,8 +56,7 @@ const MenuBar = React.memo(
                 styles.iconContainer,
               ]}
               onPress={onLeftClickListener}
-              hitSlop={10}
-            >
+              hitSlop={10}>
               <Image
                 source={leftIcon}
                 style={[styles.iconStyle, leftIconStyle]}
@@ -75,10 +72,9 @@ const MenuBar = React.memo(
               Fonts.textRegular,
               Fonts.textBold,
 
-              { color: Colors.white },
+              {color: Colors.white},
               textStyle,
-            ]}
-          >
+            ]}>
             {title}
           </Text>
           {rightIcon && (
@@ -89,8 +85,7 @@ const MenuBar = React.memo(
                 styles.iconContainer,
               ]}
               onPress={onRightClickListener}
-              hitSlop={10}
-            >
+              hitSlop={10}>
               <Image
                 source={rightIcon}
                 style={[styles.iconStyle, rightIconStyle]}
@@ -101,7 +96,7 @@ const MenuBar = React.memo(
         </View>
       </SafeAreaView>
     );
-  }
+  },
 );
 
 export default MenuBar;

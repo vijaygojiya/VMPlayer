@@ -1,43 +1,40 @@
-import { PhotoIdentifier } from "@react-native-camera-roll/camera-roll";
-import React from "react";
-import { Text, Pressable, Image, StyleSheet, View } from "react-native";
-import { Colors, Fonts, Images, Layout } from "../../theme";
-import Methods from "../../utils/Methods";
-import FastImage from "react-native-fast-image";
+import {PhotoIdentifier} from '@react-native-camera-roll/camera-roll';
+import React from 'react';
+import {Text, Pressable, StyleSheet, View} from 'react-native';
+import {Colors, Fonts, Layout} from '../../theme';
+import Methods from '../../utils/Methods';
+import FastImage from 'react-native-fast-image';
 
 interface VideoListItemProps extends PhotoIdentifier {
   onVideoItemPress: () => void;
   onVideoItemLongPress: () => void;
 }
 
-const VideoListItem: React.FC<VideoListItemProps> = (props) => {
-  const { filename, playableDuration, uri } = props.node.image;
-  const { onVideoItemPress, onVideoItemLongPress } = props;
+const VideoListItem: React.FC<VideoListItemProps> = props => {
+  const {filename, playableDuration, uri} = props.node.image;
+  const {onVideoItemPress, onVideoItemLongPress} = props;
 
   return (
     <Pressable
       onLongPress={onVideoItemLongPress}
-      android_ripple={{ color: Colors.grey }}
+      android_ripple={{color: Colors.grey}}
       onPress={onVideoItemPress}
-      style={[Layout.row, styles.rowContainer]}
-    >
+      style={[Layout.row, styles.rowContainer]}>
       <FastImage
         resizeMode="cover"
-        source={{ uri }}
+        source={{uri}}
         style={styles.folderIconStyle}
       />
       <View style={styles.titleContainer}>
         <Text
           numberOfLines={2}
-          ellipsizeMode={"tail"}
-          style={[Fonts.textNormal, Fonts.textMedium, styles.titleTextStyle]}
-        >
+          ellipsizeMode={'tail'}
+          style={[Fonts.textNormal, Fonts.textMedium, styles.titleTextStyle]}>
           {filename}
         </Text>
         <Text
           numberOfLines={1}
-          style={[Fonts.textNormal, styles.countTextStyle]}
-        >
+          style={[Fonts.textNormal, styles.countTextStyle]}>
           {Methods.getDurationTime(playableDuration)}
         </Text>
       </View>

@@ -1,7 +1,7 @@
-import React from "react";
-import { View } from "react-native";
-import { Text, Pressable, Image, StyleSheet } from "react-native";
-import { Colors, Fonts, Images, Layout } from "../../theme";
+import React from 'react';
+import {View} from 'react-native';
+import {Text, Pressable, Image, StyleSheet} from 'react-native';
+import {Colors, Fonts, Images, Layout} from '../../theme';
 
 interface FolderListItemPropsType {
   title: string;
@@ -9,30 +9,27 @@ interface FolderListItemPropsType {
   onItemPress: (name: string, count: number) => void;
 }
 
-const FolderListItem: React.FC<FolderListItemPropsType> = (props) => {
-  const { title, count, onItemPress } = props;
+const FolderListItem: React.FC<FolderListItemPropsType> = props => {
+  const {title, count, onItemPress} = props;
 
   return (
     <Pressable
-      android_ripple={{ color: Colors.grey }}
+      android_ripple={{color: Colors.grey}}
       onPress={() => {
         onItemPress(title, count);
       }}
-      style={[Layout.rowHCenter, styles.rowContainer]}
-    >
+      style={[Layout.rowHCenter, styles.rowContainer]}>
       <Image source={Images.folderFilled} style={styles.folderIconStyle} />
       <View style={[styles.titleContainer]}>
         <Text
           numberOfLines={2}
-          style={[Fonts.textMedium, styles.titleTextStyle]}
-        >
+          style={[Fonts.textMedium, styles.titleTextStyle]}>
           {title}
         </Text>
         <Text
           numberOfLines={1}
-          style={[Fonts.textSmall, styles.countTextStyle]}
-        >
-          {count} {count > 1 ? "videos" : "video"}
+          style={[Fonts.textSmall, styles.countTextStyle]}>
+          {count} {count > 1 ? 'videos' : 'video'}
         </Text>
       </View>
     </Pressable>

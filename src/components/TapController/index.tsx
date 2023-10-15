@@ -1,11 +1,11 @@
-import React from "react";
-import type { StyleProp, ViewStyle } from "react-native";
-import { Gesture } from "react-native-gesture-handler";
-import { GestureDetector } from "react-native-gesture-handler";
+import React from 'react';
+import type {StyleProp, ViewStyle} from 'react-native';
+import {Gesture} from 'react-native-gesture-handler';
+import {GestureDetector} from 'react-native-gesture-handler';
 
-import Animated from "react-native-reanimated";
+import Animated from 'react-native-reanimated';
 
-const hitSlop = { left: 8, bottom: 4, right: 8, top: 4 };
+const hitSlop = {left: 8, bottom: 4, right: 8, top: 4};
 
 type TapControllerProps = {
   onPress: () => void;
