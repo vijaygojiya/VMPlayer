@@ -1,11 +1,5 @@
 import { FlatList, ListRenderItem, Text, View } from "react-native";
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
@@ -14,16 +8,18 @@ import {
   PhotoIdentifier,
   CameraRoll,
 } from "@react-native-camera-roll/camera-roll";
-import { VideoListItem } from "../../components";
+import { MenuBar, VideoListItem } from "../../components";
 import { Routes } from "../../navigators/routes";
 import styles from "./styles";
 import { VideosListScreenType } from "../../navigators/types/navigation";
+import { useMMKVObject } from "react-native-mmkv";
+import { Fonts, Images, Layout } from "../../theme";
 
 const VideosList = (props: VideosListScreenType) => {
-  const [videos, setVideos] = useState<PhotoIdentifier[]>([]);
-
   const { navigation, route } = props;
   const { groupName, count } = route.params;
+  const [videos, setVideos] = useMMKVObject<PhotoIdentifier[]>(groupName);
+
   useEffect(() => {
     getVideosData();
   }, []);
@@ -34,10 +30,10 @@ const VideosList = (props: VideosListScreenType) => {
   // variables
   const snapPoints = useMemo(() => ["50%"], []);
 
-  // const openBottomShhet = () => {
-  //   // bottomSheetRef?.current?.expand();\
-  //   bottomSheetRef?.current?.snapToIndex(0);
-  // };
+  const openBottomSheet = () => {
+    // bottomSheetRef?.current?.expand();\
+    bottomSheetRef?.current?.snapToIndex(0);
+  };
 
   const renderBackdrop = useCallback(
     (props: BottomSheetBackdropProps) => (
@@ -62,6 +58,7 @@ const VideosList = (props: VideosListScreenType) => {
           "location",
           "imageSize",
           "playableDuration",
+          "orientation",
         ],
       });
 
@@ -72,15 +69,29 @@ const VideosList = (props: VideosListScreenType) => {
   };
 
   const renderVideoDetailItem: ListRenderItem<PhotoIdentifier> = (props) => {
-    const { item } = props;
+    const { item, index } = props;
     const openVideo = () => {
-      navigation.navigate(Routes.VideoDetail);
+      if (videos?.length) {
+        navigation.navigate(Routes.VideoDetail, { videos: videos, index });
+      }
     };
-    return <VideoListItem {...item} onVideoItemPress={openVideo} />;
+    return (
+      <VideoListItem
+        {...item}
+        onVideoItemPress={openVideo}
+        onVideoItemLongPress={openBottomSheet}
+      />
+    );
   };
 
   return (
-    <View>
+    <View style={[Layout.fill]}>
+      <MenuBar
+        leftIcon={Images.chevron}
+        title={groupName}
+        leftIconStyle={Layout.rotate90Inverse}
+        onLeftClickListener={navigation.goBack}
+      />
       <FlatList
         data={videos}
         renderItem={renderVideoDetailItem}
@@ -89,7 +100,6 @@ const VideosList = (props: VideosListScreenType) => {
         keyExtractor={(_, index) => index.toString()}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.flContainer}
-        // onEndReached={fetchMoreVideo}
       />
       <BottomSheet
         backdropComponent={renderBackdrop}
@@ -98,7 +108,7 @@ const VideosList = (props: VideosListScreenType) => {
         index={-1}
         snapPoints={snapPoints}
       >
-        <Text>af</Text>
+        <Text style={[Fonts.textNormal, Fonts.textMedium]}>TO:DO</Text>
       </BottomSheet>
     </View>
   );

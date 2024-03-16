@@ -1,7 +1,7 @@
-import React from "react";
-import { View } from "react-native";
-import { Text, Pressable, Image, StyleSheet } from "react-native";
-import { Colors, Images } from "../../theme";
+import React from 'react';
+import {View} from 'react-native';
+import {Text, Pressable, Image, StyleSheet} from 'react-native';
+import {Colors, Fonts, Images, Layout} from '../../theme';
 
 interface FolderListItemPropsType {
   title: string;
@@ -9,28 +9,27 @@ interface FolderListItemPropsType {
   onItemPress: (name: string, count: number) => void;
 }
 
-const FolderListItem: React.FC<FolderListItemPropsType> = (props) => {
-  const { title, count, onItemPress } = props;
+const FolderListItem: React.FC<FolderListItemPropsType> = props => {
+  const {title, count, onItemPress} = props;
 
   return (
     <Pressable
-      android_ripple={{ color: Colors.grey }}
+      android_ripple={{color: Colors.grey}}
       onPress={() => {
         onItemPress(title, count);
       }}
-      style={styles.rowContainer}
-    >
+      style={[Layout.rowHCenter, styles.rowContainer]}>
       <Image source={Images.folderFilled} style={styles.folderIconStyle} />
-      <View style={styles.titleContainer}>
+      <View style={[styles.titleContainer]}>
         <Text
           numberOfLines={2}
-          ellipsizeMode={"tail"}
-          style={[styles.titleTextStyle]}
-        >
+          style={[Fonts.textMedium, styles.titleTextStyle]}>
           {title}
         </Text>
-        <Text numberOfLines={1} style={styles.countTextStyle}>
-          {count} {count > 1 ? "videos" : "video"}
+        <Text
+          numberOfLines={1}
+          style={[Fonts.textSmall, styles.countTextStyle]}>
+          {count} {count > 1 ? 'videos' : 'video'}
         </Text>
       </View>
     </Pressable>
@@ -47,7 +46,6 @@ const styles = StyleSheet.create({
     tintColor: Colors.blue,
   },
   rowContainer: {
-    flexDirection: "row",
     paddingVertical: 5,
     paddingHorizontal: 10,
     marginVertical: 3,
@@ -55,15 +53,12 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     flex: 1,
-    justifyContent: "space-around",
   },
   titleTextStyle: {
-    fontSize: 16,
     color: Colors.lightGreyBlue,
   },
   countTextStyle: {
     color: Colors.lightGreyBlue,
-    fontSize: 13,
     opacity: 0.5,
   },
 });

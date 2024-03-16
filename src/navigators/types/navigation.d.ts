@@ -1,11 +1,12 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Routes } from "../routes";
+import { PhotoIdentifier } from "@react-native-camera-roll/camera-roll";
 
 type RootStackParamList = {
   [Routes.SplashScreen]: undefined;
   [Routes.FoldersList]: undefined;
   [Routes.VideosList]: { groupName: string; count: number };
-  [Routes.VideoDetail]: undefined;
+  [Routes.VideoDetail]: { videos: PhotoIdentifier[]; index: number };
 };
 
 export type SplashScreenType = NativeStackScreenProps<

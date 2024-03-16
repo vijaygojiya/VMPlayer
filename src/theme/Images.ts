@@ -9,6 +9,12 @@ const Images = {
   folderFilled: require("./assets/images/folder_filled.png"),
   folder: require("./assets/images/folder.png"),
   folderOutline: require("./assets/images/folder_outline.png"),
+  hamburger: require("./assets/images/hamburger.png"),
+  search: require("./assets/images/search.png"),
+  play: require("./assets/images/play.png"),
+  pause: require("./assets/images/pause.png"),
+  forward: require("./assets/images/forward.png"),
+  next: require("./assets/images/next.png"),
 };
 
 export default Images;
